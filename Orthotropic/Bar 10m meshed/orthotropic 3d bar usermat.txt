@@ -1,0 +1,119 @@
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+
+T1 = 1
+TB,USER,1,1,9,  
+TBTEMP,T1
+TBDATA,,5e10,8e9,8e9,0.3,0.4,0.3,5e9,3.8462e9,5e9
+
+
+K,1,,,, 
+K,2,,1,,
+K,3,10,1,,  
+K,4,10,,,   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,1,,,, 
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CMSEL,S,_Y  
+!*  
+CMSEL,S,_Y1 
+VATT,       1, ,   1,       0   
+CMSEL,S,_Y  
+CMDELE,_Y   
+CMDELE,_Y1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1 
+!*  
+FLST,5,8,4,ORDE,6   
+FITEM,5,1   
+FITEM,5,3   
+FITEM,5,5   
+FITEM,5,7   
+FITEM,5,9   
+FITEM,5,-12 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,2, , , , ,1  
+!*  
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+FLST,2,9,1,ORDE,6   
+FITEM,2,1   
+FITEM,2,-3  
+FITEM,2,34  
+FITEM,2,-36 
+FITEM,2,67  
+FITEM,2,-69 
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,1,ORDE,1   
+FITEM,2,81  
+!*  
+/GO 
+F,P51X,FX,1000  
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,1
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0  

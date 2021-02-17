@@ -1,0 +1,114 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!  Orthotropic 1 elem 1 
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+
+T1 = 1
+TB,USER,1,1,9,  
+TBTEMP,T1
+TBDATA,,5e10,8e9,8e9,0.3,0.4,0.3,5e9,3.8462e9,5e9  
+
+K,1,,,, 
+K,2,,1,,
+K,3,10,1,,  
+K,4,10,,,   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,1,,,, 
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CMSEL,S,_Y  
+!*  
+CMSEL,S,_Y1 
+VATT,       1, ,   1,       0   
+CMSEL,S,_Y  
+CMDELE,_Y   
+CMDELE,_Y1  
+!*  
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+FLST,2,4,1,ORDE,4   
+FITEM,2,1   
+FITEM,2,-2  
+FITEM,2,5   
+FITEM,2,-6  
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,4,1,ORDE,4   
+FITEM,2,3   
+FITEM,2,-4  
+FITEM,2,7   
+FITEM,2,-8  
+!*  
+/GO 
+F,P51X,FX,250   
+/STATUS,SOLU
+OUTRES,ALL,ALL
+SOLVE   
+FINISH  
+/POST1  
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0  
+!*  
+/EFACET,1   
+PLNSOL, S,EQV, 0,1.0
+!*  
+/EFACET,1   
+PLNSOL, S,X, 0,1.0  

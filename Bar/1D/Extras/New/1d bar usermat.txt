@@ -1,0 +1,110 @@
+!*  
+!!!!!!!!!!!!!!!!!!!!!! 1D model New 
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,LINK180
+!*  
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,200e3  
+MPDATA,PRXY,1,,0.3  
+TB,USER,1,1,2,  
+TBTEMP,0
+TBDATA,,207e3,0,,,, 
+!*  
+!*  
+!*  
+!*  
+SECTYPE,1,LINK, ,1D 
+SECDATA,100,
+SECCONTROL,0,0  
+!*  
+K,1,,,, 
+K,2,100,,,  
+K,2,100,,,  
+LSTR,       1,       2  
+CM,_Y,LINE  
+LSEL, , , ,       1 
+CM,_Y1,LINE 
+CMSEL,S,_Y  
+!*  
+!*  
+CMSEL,S,_Y1 
+LATT,1, ,1, , , ,1  
+CMSEL,S,_Y  
+CMDELE,_Y   
+CMDELE,_Y1  
+!*  
+!*  
+LESIZE,ALL, , ,100, ,1, , ,1,   
+FINISH  
+/SOL
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+FLST,2,1,3,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DK,P51X, , , ,0,ALL, , , , , ,  
+FLST,2,1,3,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+FK,P51X,FX,200  
+FINISH  
+/PREP7  
+LMESH,       1  
+FINISH  
+/SOL
+FLST,2,1,1,ORDE,1   
+FITEM,2,3   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+F,P51X,FX,200   
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,1
+!*  
+/SHRINK,0   
+/ESHAPE,1.0 
+/EFACET,1   
+/RATIO,1,1,1
+/CFORMAT,32,0   
+/REPLOT 
+!*  
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0  

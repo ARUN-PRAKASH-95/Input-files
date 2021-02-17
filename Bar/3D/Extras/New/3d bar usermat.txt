@@ -1,0 +1,182 @@
+!!!!!!!!!!!!!!!!!!!!!!!!   New model 3D 
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,200e3  
+MPDATA,PRXY,1,,0.3  
+TB,USER,1,1,2,  
+TBTEMP,0
+TBDATA,,207e3,0,,,, 
+
+
+!!!!!!!!!!!!!!!!!!!!!!! Modelling  
+K,1,0,0,0,  
+K,2,0,10,0, 
+K,3,100,10,0,   
+K,4,100,0,0,
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,10,,,,
+
+
+
+!!!!!!!!!!!!!!!!!!  Meshing 
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CMSEL,S,_Y  
+!*  
+CMSEL,S,_Y1 
+VATT,       1, ,   1,       0   
+CMSEL,S,_Y  
+CMDELE,_Y   
+CMDELE,_Y1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,100, , , , ,1
+!*  
+FLST,5,8,4,ORDE,6   
+FITEM,5,1   
+FITEM,5,3   
+FITEM,5,5   
+FITEM,5,7   
+FITEM,5,9   
+FITEM,5,-12 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1 
+!*  
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+
+
+!*  
+!!!!!!!!!!!!!!!!!!    Load and BCs  
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/USER,  1   
+/FOC,   1,   31.6426206580    ,   6.54407863624    ,   5.00000000000
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,   26.5893891317    ,   6.76966932938    ,   5.00000000000
+/REPLO  
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+FLST,2,121,1,ORDE,6 
+FITEM,2,1   
+FITEM,2,-11 
+FITEM,2,1112
+FITEM,2,-1122   
+FITEM,2,2223
+FITEM,2,-2321   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/FOC,   1,   45.1781288500    ,  -3.54519633022    ,  -3.27387405873
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,   60.0657879528    ,  -11.2258634581    ,  -10.4808660336
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,   63.3163529824    ,  -13.3583168215    ,  -11.5989776998
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+FLST,2,1,1,ORDE,1   
+FITEM,2,126 
+!*  
+/GO 
+F,P51X,FX,200   
+/AUTO,1 
+/REP,FAST   
+/STATUS,SOLU
+SOLVE   
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Beam 189 2   
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,BEAM189
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,25000  
+MPDATA,PRXY,1,,0.15 
+SECTYPE,   1, BEAM, RECT, , 0   
+SECOFFSET, CENT 
+SECDATA,0.3,0.45,0,0,0,0,0,0,0,0,0,0
+K,1,,,, 
+K,2,2,,,
+LSTR,       1,       2  
+CM,_Y,LINE  
+LSEL, , , ,       1 
+CM,_Y1,LINE 
+CMSEL,S,_Y  
+!*  
+!*  
+CMSEL,S,_Y1 
+LATT,1, ,1, , , ,1  
+CMSEL,S,_Y  
+CMDELE,_Y   
+CMDELE,_Y1  
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,1   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,20, , , , ,1 
+!*  
+LMESH,       1  
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+F,P51X,FY,-50   
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,1
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0  
+!*  

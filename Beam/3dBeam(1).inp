@@ -1,0 +1,92 @@
+!!3D beam structure
+FINISH
+
+/CLEAR
+
+!!Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/VIEW,1,1,2,3
+/ANG,1
+!!SETUP: element types, materials, sections
+KEYW,PR_STRUC,1
+
+/PREP7
+
+YOUNG = 300000
+POISS = 0.5
+MAT_1 = 1
+T1 = 1
+T2 = 2
+
+ET,1,BEAM189
+SECTYPE,1,BEAM,I,I100,0
+SECOFFSET,CENT
+SECDATA,50,50,100,6.8,6.8,4.5
+
+MPTEMP,1,0
+
+!MP,EX,MAT_1,YOUNG
+!MP,PRXY,MAT_1,POISS
+TB,USER,MAT_1,2,4
+TBTEMP,T1
+TBDATA,1,YOUNG,POISS,100,10
+TBTEMP,T2
+TBDATA,1,YOUNG,POISS,100,10
+
+!!Modelling
+/PNUM,KP,1
+/PNUM,LINE,1
+
+K,1,0,0,-577.3
+K,2,-500,0,288.7
+K,3,500,00,288.7
+
+K,,0,4000,0 ! Omitting the KP number means automatic numbering
+K, ! 5-th keypoint at origin, auto-numbered
+L,1,4
+L,2,4
+L,3,4
+
+! Element size on lines: NDIV = 20
+
+LESIZE,ALL,,,20,,1,,,1
+
+! Meshing attributes on line, '5' is the orientation KP here
+
+LATT,1,,1,,5,,1
+
+LMESH,ALL
+
+! Display element shape to verify good element orientation
+
+/ESHAPE,1.0
+
+! Select nodes at Y=0, constrain all DoF
+
+NSEL,S,LOC,Y,0
+
+D,ALL,,,,,,ALL,,,,
+
+! Select nodes at Y=4000, add FZ=10000
+
+NSEL,S,LOC,Y,4000
+
+F,ALL,FZ,10000
+
+! Select everything before proceeding to solution
+
+ALLSEL,ALL
+
+!!Solution
+
+/SOL
+SOLVE
+
+!!Postprocessing
+/POST1
+PLDISP,2 
+PLNSOL,U,X,0,1.0 
+PLNSOL,U,Y,0,1.0 
+PLNSOL,U,Z,0,1.0 !

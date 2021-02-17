@@ -1,0 +1,69 @@
+!!!!!!!!!!!!!!!!
+FINISH
+/CLEAR,START
+
+
+/PREP7  
+!*  
+ET,1,LINK180
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,200e3  
+MPDATA,PRXY,1,,0.3  
+!*  
+!*  
+SECTYPE,1,LINK, ,Square 
+SECDATA,2,  
+SECCONTROL,0,0  
+!*  
+
+
+!!!!!!! Modelling   
+K, ,,,, 
+K, ,10,,,   
+LSTR,       1,       2  
+
+
+!!!!!!!!!! Meshing  
+TYPE,   1   
+MAT,       1
+REAL,   
+ESYS,       0   
+SECNUM,   1 
+!*  
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
+LMESH,       1  
+
+
+!!!!!!!!!! Solution
+FINISH  
+/SOL
+
+!!!!!!!!! BC 
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,
+
+!!!!!!!!!   loading 
+FLST,2,1,1,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+F,P51X,FX,10000
+
+!!!!!!!!! Solve
+/STATUS,SOLU
+SOLVE  
+
+!!!!!!!! Results
+FINISH  
+/POST1  
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0 
+

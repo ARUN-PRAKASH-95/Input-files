@@ -1,0 +1,239 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   3D Beam 
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,25000  
+MPDATA,PRXY,1,,0.15 
+TB,USER,1,1,2,  
+TBTEMP,0
+TBDATA,,207e3,0,,,, 
+
+
+K,1,,,, 
+K,2,,0.45,, 
+K,3,2,0.45,,
+K,3,2,0,,   
+K,3,2,0,,   
+KDELE,       3  
+K,3,2,0.45,,
+K,4,2,0,,   
+K,4,2,0,,   
+/AUTO,1 
+/REP,FAST   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,0.3,,,,   
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CMSEL,S,_Y  
+!*  
+CMSEL,S,_Y1 
+VATT,       1, ,   1,       0   
+CMSEL,S,_Y  
+CMDELE,_Y   
+CMDELE,_Y1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,100, , , , ,1
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,1   
+FITEM,5,3   
+FITEM,5,5   
+FITEM,5,7   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,22, , , , ,1 
+!*  
+FLST,5,4,4,ORDE,2   
+FITEM,5,9   
+FITEM,5,-12 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,2, , , , ,1  
+!*  
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/USER,  1   
+/FOC,   1,  0.588522558643    ,  0.236730716530    ,  0.150000000000
+/REPLO  
+/FOC,   1,  0.354810590855    ,  0.227707088430    ,  0.150000000000
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,  0.231649701754    ,  0.226995175776    ,  0.150000000000
+/REPLO  
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+FLST,2,69,1,ORDE,6  
+FITEM,2,1   
+FITEM,2,-23 
+FITEM,2,2324
+FITEM,2,-2346   
+FITEM,2,4647
+FITEM,2,-4669   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,  0.691437597296    , -0.488075028477E-01, -0.339852169184E-01
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,  0.923968713448    , -0.134236462796    , -0.181087373122
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/FOC,   1,   1.09982193701    , -0.195228888626    , -0.295948170853
+/REPLO  
+FLST,2,1,1,ORDE,1   
+FITEM,2,4670
+!*  
+/GO 
+F,P51X,FY,-50   
+/AUTO,1 
+/REP,FAST   
+FINISH  
+/POST1  
+FINISH  
+/SOL
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,1
+!*  
+/EFACET,1   
+PLNSOL, U,Y, 0,1.0  
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
