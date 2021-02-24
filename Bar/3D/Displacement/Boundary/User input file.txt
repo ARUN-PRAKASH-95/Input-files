@@ -1,4 +1,11 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!  Orthotropic 1 elem 1 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DIsplacement conditions 2   
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       10:04:55
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       09:43:00  
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   Displacement condition
 !*  
 /NOPR   
 KEYW,PR_SET,1   
@@ -23,11 +30,17 @@ ET,1,SOLID185
 !*  
 !*  
 
+YOUNG = 200e6
+POISS = 0.3
+MAT_1 = 1
 T1 = 1
-TB,USER,1,1,9,9  
-TBTEMP,T1
-TBDATA,,5e10,8e9,8e9,0.3,0.4,0.3,5e9,3.8462e9,5e9  
 
+
+
+TB,USER,MAT_1,1,4
+TBTEMP,T1
+TBDATA,1,YOUNG,POISS,207e6,0
+ 
 K,1,,,, 
 K,2,,1,,
 K,3,10,1,,  
@@ -44,6 +57,8 @@ A,P51X
 FLST,2,1,5,ORDE,1   
 FITEM,2,1   
 VEXT,P51X, , ,0,0,1,,,, 
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
 CM,_Y,VOLU  
 VSEL, , , ,       1 
 CM,_Y1,VOLU 
@@ -55,8 +70,6 @@ CMSEL,S,_Y
 CMDELE,_Y   
 CMDELE,_Y1  
 !*  
-!*  
-LESIZE,ALL, , ,1, ,1, , ,1, 
 MSHAPE,0,3D 
 MSHKEY,1
 !*  
@@ -72,6 +85,7 @@ CMDELE,_Y
 CMDELE,_Y1  
 CMDELE,_Y2  
 !*  
+/UI,MESH,OFF
 /VIEW,1,,,1 
 /ANG,1  
 /REP,FAST   
@@ -84,12 +98,50 @@ FITEM,2,1
 FITEM,2,-2  
 FITEM,2,5   
 FITEM,2,-6  
-!*  
-/GO 
-D,P51X, , , , , ,ALL, , , , ,   
 /VIEW,1,1,1,1   
 /ANG,1  
 /REP,FAST   
+FINISH  
+/POST1  
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+FLST,2,1,1,ORDE,1   
+FITEM,2,5   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,6   
+!*  
+/GO 
+D,P51X, , , , , ,UX,UZ, , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+D,P51X, , , , , ,UX, , , , ,
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,UX,UY, , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,7   
+!*  
+/GO 
+D,P51X, , , , , ,UZ, , , , ,
+FLST,2,1,1,ORDE,1   
+FITEM,2,8   
+!*  
+/GO 
+D,P51X, , , , , ,UY,UZ, , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,4   
+!*  
+/GO 
+D,P51X, , , , , ,UY, , , , ,
 FLST,2,4,1,ORDE,4   
 FITEM,2,3   
 FITEM,2,-4  
@@ -97,9 +149,8 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-F,P51X,FX,250   
+D,P51X, ,1, , , ,UX, , , , ,
 /STATUS,SOLU
-OUTRES,ALL,ALL
 SOLVE   
 FINISH  
 /POST1  
@@ -108,7 +159,7 @@ FINISH
 PLNSOL, U,X, 0,1.0  
 !*  
 /EFACET,1   
-PLNSOL, S,EQV, 0,1.0
+PLNSOL, S,X, 0,1.0  
 !*  
 /EFACET,1   
-PLNSOL, S,X, 0,1.0  
+PLNSOL, S,EQV, 0,1.0
