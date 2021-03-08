@@ -1,0 +1,174 @@
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       10:15:58
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       10:16:04
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       17:54:34  
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 10m 1 element 3 
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,200e6  
+MPDATA,PRXY,1,,0.3  
+TB,BISO,1,1,2,  
+TBTEMP,0
+TBDATA,,207e6,0,,,, 
+K,1,,,, 
+K,2,,1,,
+K,3,10,1,,  
+K,4,10,,,   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,1,,,, 
+TYPE,   1   
+MAT,       1
+REAL,   
+ESYS,       0   
+SECNUM, 
+!*  
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+FINISH  
+/VIEW,1,,,-1
+/ANG,1  
+/REP,FAST   
+/VIEW,1,,,-1
+/ANG,1  
+/REP,FAST   
+/VIEW,1,1   
+/ANG,1  
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/SOLU   
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+!*  
+/GO 
+DA,P51X,ALL,0   
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UZ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/AUTO,1 
+/REP,FAST   
+FLST,2,4,1,ORDE,4   
+FITEM,2,3   
+FITEM,2,-4  
+FITEM,2,7   
+FITEM,2,-8  
+!*  
+/GO 
+F,P51X,FX,250   
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0  
+!*  
+/EFACET,1   
+PLNSOL, S,X, 0,1.0  
