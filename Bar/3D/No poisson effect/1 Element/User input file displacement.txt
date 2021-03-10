@@ -44,8 +44,8 @@ TBTEMP,T1
 TBDATA,1,YOUNG,POISS,207e6,0 
 K,1,,,, 
 K,2,,1,,
-K,3,10,1,,  
-K,4,10,,,   
+K,3,1,1,,  
+K,4,1,,,   
 FLST,2,4,3  
 FITEM,2,1   
 FITEM,2,2   
@@ -155,6 +155,6 @@ FINISH
 PLNSOL, U,X, 0,1.0  
 !*  
 /EFACET,1   
-PLNSOL, S,X, 0,1.0  
+PLNSOL, S,X, 0,1.0   
  
 
