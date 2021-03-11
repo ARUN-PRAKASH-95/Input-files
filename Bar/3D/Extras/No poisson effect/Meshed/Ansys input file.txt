@@ -1,0 +1,166 @@
+!!!!!!!!!!!!!!!!!   Bar no poissons effect  
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,200e6  
+MPDATA,PRXY,1,,0.33 
+TB,BISO,1,1,2,  
+TBTEMP,0
+TBDATA,,207e6,0,,,, 
+K,1,,,, 
+K,2,,1,,
+K,3,10,1,,  
+K,4,10,,,   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,1,,,, 
+!*  
+LESIZE,ALL, , ,2, ,1, , ,1, 
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,100,100,100  
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1  
+/USER,  1   
+/VIEW,  1, -0.974468600520    ,  0.112051501751E-01,  0.224244043870
+/ANG,   1,   2.43040356543  
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/VIEW,  1, -0.985835013098    , -0.152676922520E-01, -0.167021628908
+/ANG,   1,   3.55319288113  
+/REPLO  
+/VIEW,  1, -0.986395115579    , -0.106720125555    , -0.125041956014
+/ANG,   1,   3.42023278198  
+/REPLO  
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UZ,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+!*  
+/GO 
+DA,P51X,UX, 
+/VIEW,  1, -0.989973127993    , -0.489411775868E-02,  0.141171007868
+/ANG,   1,   2.55673630001  
+/REPLO  
+/VIEW,  1, -0.814138456781    ,  0.929664207835E-01,  0.573180440871
+/ANG,   1,   3.27047237409  
+/REPLO  
+/VIEW,  1,  0.980925199216    ,  0.289343558179E-01,  0.192220073344
+/ANG,   1,   24.0892083482  
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/VIEW,  1,  0.932944236730    ,  0.586296815438E-01,  0.355214880873
+/ANG,   1,   23.7491109434  
+/REPLO  
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
+!*  
+/GO 
+DA,P51X,UX,1
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/AUTO,1 
+/REP,FAST   
+/INPUT,'Plot boundary cond','txt','C:\Users\aruns\Desktop\Master Thesis\UMAT\',, 0  
+/STATUS,SOLU
+SOLVE   
+FINISH  

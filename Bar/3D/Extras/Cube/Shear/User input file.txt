@@ -1,0 +1,151 @@
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       12:02:34
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+!!!!!!!!!!!!!!!!!!  Shear load  
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       12:03:00
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+/COM,ANSYS RELEASE Release 19.2      BUILD 19.2      UP20180808       14:12:38  
+/input,start,ans,'C:\Program Files\ANSYS\ANSYS Inc\v192\ANSYS\apdl\'
+!*  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    Pure tensile load on a cube
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+YOUNG = 200e6
+POISS = 0.3
+MAT_1 = 1
+T1 = 1
+
+
+
+TB,USER,MAT_1,1,4
+TBTEMP,T1
+TBDATA,1,YOUNG,POISS,207e6,0  
+K,1,,,, 
+K,2,,1,,
+K,3,1,1,,   
+K,4,1,0,,   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,1,,,, 
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,100,100,100  
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1  
+FLST,2,4,1,ORDE,4   
+FITEM,2,1   
+FITEM,2,-2  
+FITEM,2,5   
+FITEM,2,-6  
+!*  
+ANTYPE,0
+FLST,2,4,1,ORDE,4   
+FITEM,2,1   
+FITEM,2,-2  
+FITEM,2,5   
+FITEM,2,-6  
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/USER,  1   
+/VIEW,  1,  0.485773232284    ,  0.504160003450    ,  0.714035753810
+/ANG,   1,  -5.87723082426  
+/REPLO  
+FLST,2,4,1,ORDE,4   
+FITEM,2,3   
+FITEM,2,-4  
+FITEM,2,7   
+FITEM,2,-8  
+!*  
+/GO 
+D,P51X, ,-1, , , ,UY, , , , ,   
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,1
+/VIEW,  1,  0.595043107991    , -0.568633903316E-01,  0.801679645789
+/ANG,   1,  -5.05907797707  
+/REPLO  
+/VIEW,  1,  0.503297045546    , -0.420115497059    ,  0.755112609533
+/ANG,   1,  -3.82635479683  
+/REPLO  
+/VIEW,  1,  0.500608419338    , -0.524915215414    , -0.688371431071
+/ANG,   1,  -82.5158901353  
+/REPLO  
+/VIEW,  1,  0.408759876409    , -0.719886491016E-01, -0.909798328114
+/ANG,   1,  -85.2477889487  
+/REPLO  
+/VIEW,  1,  0.345862519806    , -0.723290120106E-01, -0.935493255676
+/ANG,   1,  -85.1728083984  
+/REPLO  
+/VIEW,  1, -0.708749243751E-02, -0.401910719244E-02, -0.999966806563
+/ANG,   1,  -87.0693146581  
+/REPLO  
+/VIEW,  1, -0.728457873455E-01, -0.148168700642    , -0.986275583910
+/ANG,   1,  -87.4196694930  
+/REPLO  
+/VIEW,  1,  0.438553875281E-01,  0.196261667400E-01, -0.998845092376
+/ANG,   1,  -87.1829613779  
+/REPLO  

@@ -21,12 +21,13 @@ KEYW,PR_MULTI,0
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
 !*  
-/PREP7  
-!*  
+/PREP7
+ERESX,NO  
+!* 
+
 ET,1,SOLID185   
 !*  
 !*  
-
 YOUNG = 200e6
 POISS = 0.3
 MAT_1 = 1
@@ -36,7 +37,8 @@ T1 = 1
 
 TB,USER,MAT_1,1,4
 TBTEMP,T1
-TBDATA,1,YOUNG,POISS,207e6,0
+TBDATA,1,YOUNG,POISS,207e6,0 
+
 
 K,1,,,, 
 K,2,,1,,
@@ -105,6 +107,7 @@ FITEM,2,-8
 /GO 
 F,P51X,FX,250   
 /STATUS,SOLU
+
 SOLVE   
 FINISH  
 /POST1  

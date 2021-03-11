@@ -22,15 +22,16 @@ KEYW,PR_MULTI,0
 /COM,  Structural   
 !*  
 /PREP7  
+ERESX,NO 
 !*  
 ET,1,SOLID185   
 !*  
 !*  
 MAT_1 = 1
 T1 = 1.0
-YOUNG_T1 = 200e6
-POISS_T1 = 0.3
-YIELD_T1 = 207e6
+YOUNG_T1 = 210e3
+POISS_T1 = 0.33
+YIELD_T1 = 200
 HARDE_T1 = 0
 
 TEMP = 1.5
@@ -130,7 +131,7 @@ FITEM,2,16
 FITEM,2,47  
 !*  
 /GO 
-F,P51X,FX,250   
+F,P51X,FX,15   
 FINISH  
 /POST1  
 FINISH  

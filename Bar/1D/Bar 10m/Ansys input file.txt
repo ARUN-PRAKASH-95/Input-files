@@ -64,9 +64,12 @@ FLST,2,1,1,ORDE,1
 FITEM,2,2   
 !*  
 /GO 
-F,P51X,FX,1000  
+F,P51X,FX,100  
 WRFULL,3
-NSUBST, 1, 1, 1
+NSUBST,10,10,10 
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1 
 /STATUS,SOLU
 SOLVE 
 
@@ -81,15 +84,6 @@ SOLVE
 !*  
 FINISH  
 /POST1 
-!number_of_nodes=NNOD                        !Should be a callable quantity, right? Maybe obsolete
-
-*do,i,1,number_of_nodes                           !Start the loop over all nodes
-    *vget,princ,NODE,1,number_of_nodes   !An array which includes the first principal stress values
-*enddo
-
-/output,myfile,txt                                       !Set output path
-*vwrite,princ                                                !write array to file
-/out
 PLDISP,1
 !*  
 /EFACET,1   

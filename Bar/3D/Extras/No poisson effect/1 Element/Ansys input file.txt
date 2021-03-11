@@ -1,14 +1,8 @@
 /CLEAR,START
-/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       10:15:58
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       11:16:36
 /input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
 !*  
-/CLEAR,START
-/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       10:16:04
-/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
-/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       17:54:34  
-/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
-!*  
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 10m 1 element 3 
+!!!!!!!!!!!!!!!!!!!!!!!   Bar 1 elem boundary   
 !*  
 /NOPR   
 KEYW,PR_SET,1   
@@ -32,20 +26,17 @@ KEYW,PR_MULTI,0
 ET,1,SOLID185   
 !*  
 !*  
-YOUNG = 200e6
-POISS = 0.3
-MAT_1 = 1
-T1 = 1
-
-
-
-TB,USER,MAT_1,1,4
-TBTEMP,T1
-TBDATA,1,YOUNG,POISS,207e6,0 
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,200e6  
+MPDATA,PRXY,1,,0.3  
+TB,BISO,1,1,2,  
+TBTEMP,0
+TBDATA,,207e6,0,,,, 
 K,1,,,, 
 K,2,,1,,
-K,3,1,1,,  
-K,4,1,,,   
+K,3,10,1,,  
+K,4,10,,,   
 FLST,2,4,3  
 FITEM,2,1   
 FITEM,2,2   
@@ -58,12 +49,6 @@ A,P51X
 FLST,2,1,5,ORDE,1   
 FITEM,2,1   
 VEXT,P51X, , ,0,0,1,,,, 
-TYPE,   1   
-MAT,       1
-REAL,   
-ESYS,       0   
-SECNUM, 
-!*  
 !*  
 LESIZE,ALL, , ,1, ,1, , ,1, 
 MSHAPE,0,3D 
@@ -82,33 +67,40 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
-/VIEW,1,,,1 
-/ANG,1  
-/REP,FAST   
 FINISH  
-/VIEW,1,,,-1
-/ANG,1  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,10,10,10 
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1  
+/USER,  1   
+/VIEW,  1, -0.876429084828    ,  0.630392259854E-01,  0.477386756471
+/ANG,   1,  -41.0450072367  
+/REPLO  
+/DIST, 1 ,0.924021,1
 /REP,FAST   
-/VIEW,1,,,-1
-/ANG,1  
+/DIST, 1 ,0.924021,1
 /REP,FAST   
-/VIEW,1,1   
-/ANG,1  
+/DIST, 1 ,0.924021,1
 /REP,FAST   
-/DIST, 1 ,1.082226,1
+/DIST, 1 ,0.924021,1
 /REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/SOLU   
+/VIEW,  1, -0.993644673377    , -0.748165085628E-01,  0.840996618094E-01
+/ANG,   1,  -40.3254434387  
+/REPLO  
+/VIEW,  1, -0.952224887695    ,  0.173833630007    ,  0.251096858470
+/ANG,   1,  -39.9511739057  
+/REPLO  
+/VIEW,  1, -0.994587206832    , -0.305425026008E-01, -0.993148706922E-01
+/ANG,   1,  -41.3451601383  
+/REPLO  
 FLST,2,1,5,ORDE,1   
 FITEM,2,3   
 !*  
 /GO 
-DA,P51X,ALL,0   
+DA,P51X,UX, 
 FLST,2,1,4,ORDE,1   
 FITEM,2,1   
 !*  
@@ -116,27 +108,38 @@ FITEM,2,1
 DL,P51X, ,UX,   
 FLST,2,1,4,ORDE,1   
 FITEM,2,1   
-!*  
-/GO 
-DL,P51X, ,UY,   
-FLST,2,1,4,ORDE,1   
-FITEM,2,9   
-!*  
-/GO 
-DL,P51X, ,UX,   
-FLST,2,1,4,ORDE,1   
-FITEM,2,9   
 !*  
 /GO 
 DL,P51X, ,UZ,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UY,   
 FLST,2,1,1,ORDE,1   
-FITEM,2,1 
-
-/REPLOT,RESIZE  
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
 /VIEW,1,1,1,1   
 /ANG,1  
 /REP,FAST   
-/AUTO,1 
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
 /REP,FAST   
 FLST,2,4,1,ORDE,4   
 FITEM,2,3   
@@ -146,6 +149,10 @@ FITEM,2,-8
 !*  
 /GO 
 D,P51X, ,1, , , ,UX, , , , ,
+FINISH  
+/POST1  
+FINISH  
+/SOL
 /STATUS,SOLU
 SOLVE   
 FINISH  
@@ -155,6 +162,4 @@ FINISH
 PLNSOL, U,X, 0,1.0  
 !*  
 /EFACET,1   
-PLNSOL, S,X, 0,1.0   
- 
-
+PLNSOL, S,X, 0,1.0  

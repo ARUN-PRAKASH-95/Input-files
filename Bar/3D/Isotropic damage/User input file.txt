@@ -78,6 +78,8 @@ FINISH
 !*  
 ANTYPE,0
 NSUBST,100,100,100  
+OUTRES,ERASE
+OUTRES,ALL,ALL  
 TIME,1  
 FLST,2,4,1,ORDE,4   
 FITEM,2,1   
@@ -99,7 +101,7 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-D,P51X, ,1, , , ,UX, , , , ,
+D,P51X, ,5, , , ,UX, , , , ,
 FINISH  
 /POST1  
 FINISH  

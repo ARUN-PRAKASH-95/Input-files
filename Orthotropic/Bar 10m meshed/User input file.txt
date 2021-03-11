@@ -1,4 +1,4 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!  Orthotropic 1 elem 1 
+!!!!!!!!!!!!  3d orthotropic loading displacement loading   
 !*  
 /NOPR   
 KEYW,PR_SET,1   
@@ -17,17 +17,18 @@ KEYW,PR_MULTI,0
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
 !*  
-/PREP7  
+/PREP7 
+ERESX,NO 
 !*  
 ET,1,SOLID185   
 !*  
 !*  
 
-T1 = 1
-TB,USER,1,1,9,  
-TBTEMP,T1
-TBDATA,,38500e6,16500e6,16500e6,0.27,0.4,0.27,4700e6,4700e6,4700e6  
 
+T1 = 1
+TB,USER,1,1,9,9  
+TBTEMP,T1
+TBDATA,,5e10,8e9,8e9,0.3,0.4,0.3,5e9,3.8462e9,5e9    
 K,1,,,, 
 K,2,,1,,
 K,3,10,1,,  
@@ -44,19 +45,14 @@ A,P51X
 FLST,2,1,5,ORDE,1   
 FITEM,2,1   
 VEXT,P51X, , ,0,0,1,,,, 
-CM,_Y,VOLU  
-VSEL, , , ,       1 
-CM,_Y1,VOLU 
-CMSEL,S,_Y  
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
 !*  
-CMSEL,S,_Y1 
-VATT,       1, ,   1,       0   
-CMSEL,S,_Y  
-CMDELE,_Y   
-CMDELE,_Y1  
-!*  
-!*  
-LESIZE,ALL, , ,1, ,1, , ,1, 
+LESIZE,ALL, , ,5, ,1, , ,1, 
 MSHAPE,0,3D 
 MSHKEY,1
 !*  
@@ -72,6 +68,7 @@ CMDELE,_Y
 CMDELE,_Y1  
 CMDELE,_Y2  
 !*  
+/UI,MESH,OFF
 /VIEW,1,,,1 
 /ANG,1  
 /REP,FAST   
@@ -79,36 +76,46 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-FLST,2,4,1,ORDE,4   
+NSUBST,10,10,10 
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1  
+FLST,2,36,1,ORDE,6  
 FITEM,2,1   
-FITEM,2,-2  
-FITEM,2,5   
 FITEM,2,-6  
+FITEM,2,37  
+FITEM,2,-42 
+FITEM,2,73  
+FITEM,2,-96 
 !*  
 /GO 
 D,P51X, , , , , ,ALL, , , , ,   
 /VIEW,1,1,1,1   
 /ANG,1  
 /REP,FAST   
-FLST,2,4,1,ORDE,4   
-FITEM,2,3   
-FITEM,2,-4  
-FITEM,2,7   
-FITEM,2,-8  
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
 !*  
 /GO 
-F,P51X,FX,250   
+DA,P51X,UX,1
 /STATUS,SOLU
-OUTRES,ALL,ALL
 SOLVE   
 FINISH  
 /POST1  
-!*  
-/EFACET,1   
-PLNSOL, U,X, 0,1.0  
-!*  
-/EFACET,1   
-PLNSOL, S,EQV, 0,1.0
-!*  
-/EFACET,1   
-PLNSOL, S,X, 0,1.0  
+PLDISP,1
+/ZOOM,1,RECT,1.23175,0.205882 ,1.12466141327 ,0.321176456003
+/AUTO,1 
+/REP,FAST   
+/USER,  1   
+/VIEW,  1,  0.862477749570    ,  0.356728581873    ,  0.358994220527
+/ANG,   1,   10.7149372789  
+/REPLO  
+/VIEW,  1,  0.961511213526    ,  0.420632451480E-01,  0.271526922554
+/ANG,   1,   12.0013010842  
+/REPLO  

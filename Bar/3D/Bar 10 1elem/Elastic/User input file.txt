@@ -22,6 +22,7 @@ KEYW,PR_MULTI,0
 /COM,  Structural   
 !*  
 /PREP7  
+ERESX,NO 
 !*  
 ET,1,SOLID185   
 !*  

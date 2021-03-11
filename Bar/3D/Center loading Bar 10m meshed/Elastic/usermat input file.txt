@@ -22,7 +22,8 @@ KEYW,PR_MULTI,0
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
 !*  
-/PREP7  
+/PREP7 
+ERESX,NO 
 !*  
 ET,1,SOLID185   
 !*  
