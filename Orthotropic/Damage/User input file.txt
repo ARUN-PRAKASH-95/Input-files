@@ -22,16 +22,18 @@ KEYW,PR_MULTI,0
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
 !*  
-/PREP7 
-ERESX,YES 
+/PREP7  
+ERESX,YES
 !*  
 ET,1,SOLID185   
 !*  
 !*  
-MPTEMP,,,,,,,,  
-MPTEMP,1,0  
-MPDATA,EX,1,,210e3  
-MPDATA,PRXY,1,,0.33 
+
+T1 = 1
+TB,USER,1,1,9,9  
+TBTEMP,T1
+TBDATA,,38500e6,16500e6,16500e6,0.27,0.4,0.27,4700e6,4700e6,4700e6
+
 K,1,,,, 
 K,2,,1,,
 K,3,10,1,,  
@@ -73,7 +75,9 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-NSUBST,100,100,100  
+NSUBST,1,1,1 
+OUTRES,ERASE
+OUTRES,ALL,ALL  
 TIME,1  
 FLST,2,4,1,ORDE,4   
 FITEM,2,1   
@@ -95,7 +99,7 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-D,P51X, ,5, , , ,UX, , , , ,
+D,P51X, ,1, , , ,UX, , , , ,
 FINISH  
 /POST1  
 FINISH  
