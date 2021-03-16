@@ -75,7 +75,7 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-NSUBST,30,30,30 
+NSUBST,50,50,50 
 OUTRES,ERASE
 OUTRES,ALL,ALL  
 TIME,1  
@@ -99,7 +99,7 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-D,P51X, ,0.5, , , ,UX, , , , ,
+D,P51X, ,0.4, , , ,UX, , , , ,
 FINISH  
 /POST1  
 FINISH  

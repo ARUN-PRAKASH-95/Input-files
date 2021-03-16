@@ -23,7 +23,7 @@ KEYW,PR_MULTI,0
 /COM,  Structural   
 !*  
 /PREP7  
-ERESX,NO
+ERESX,YES
 !*  
 ET,1,SOLID185   
 !*  
@@ -78,7 +78,7 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-NSUBST,25,25,25 
+NSUBST,50,50,50 
 OUTRES,ERASE
 OUTRES,ALL,ALL  
 TIME,1  
@@ -102,7 +102,7 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-D,P51X, ,0.02, , , ,UX, , , , ,
+D,P51X, ,0.025, , , ,UX, , , , ,
 FINISH  
 /POST1  
 FINISH  
