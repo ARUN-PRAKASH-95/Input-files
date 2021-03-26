@@ -18,12 +18,13 @@ KEYW,PR_MULTI,0
 /COM,  Structural   
 !*  
 /PREP7  
+ERESX,YES
 !*  
 ET,1,LINK180
 !*  
 !*  
 !* 
-/OUT,output.out
+
 YOUNG = 200e6
 POISSON = 0.3
  
@@ -70,8 +71,12 @@ FITEM,2,2
 !*  
 /GO 
 F,P51X,FX,100  
+WRFULL,3
+NSUBST,10,10,10 
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1 
 /STATUS,SOLU
-NSUBST, 1, 1, 1
 SOLVE   
 !*  
 /SHRINK,0   

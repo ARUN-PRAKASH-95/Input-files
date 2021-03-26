@@ -18,11 +18,12 @@ KEYW,PR_MULTI,0
 /COM,  Structural   
 !*  
 /PREP7  
+ERESX,YES
 !*  
 ET,1,LINK180
 !*  
 !*  
-!/OUT,output.out
+
 MPTEMP,,,,,,,,  
 MPTEMP,1,0  
 MPDATA,EX,1,,200e6  

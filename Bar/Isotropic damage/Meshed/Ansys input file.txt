@@ -1,8 +1,9 @@
-/CLEAR,START
-/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       18:08:56
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  isotrpic damage meshed  
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       16:00:26  
 /input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
 !*  
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 10m 1 element just elastic 
+/REPLOT,RESIZE  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   isotropic damage   
 !*  
 /NOPR   
 KEYW,PR_SET,1   
@@ -21,22 +22,20 @@ KEYW,PR_MULTI,0
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
 !*  
-/PREP7 
-ERESX,YES
+/PREP7  
+ERESX,YES   
 !*  
 ET,1,SOLID185   
 !*  
 !*  
 MPTEMP,,,,,,,,  
 MPTEMP,1,0  
-MPDATA,EX,1,,200e6  
-MPDATA,PRXY,1,,0.3  
+MPDATA,EX,1,,210e3  
+MPDATA,PRXY,1,,0.33 
 K,1,,,, 
 K,2,,1,,
 K,3,10,1,,  
 K,4,10,,,   
-LSTR,       1,       2  
-LDELE,       1  
 FLST,2,4,3  
 FITEM,2,1   
 FITEM,2,2   
@@ -49,14 +48,32 @@ A,P51X
 FLST,2,1,5,ORDE,1   
 FITEM,2,1   
 VEXT,P51X, , ,0,0,1,,,, 
-TYPE,   1   
-MAT,       1
-REAL,   
-ESYS,       0   
-SECNUM, 
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
 !*  
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
-LESIZE,ALL, , ,1, ,1, , ,1, 
+FLST,5,8,4,ORDE,6   
+FITEM,5,1   
+FITEM,5,3   
+FITEM,5,5   
+FITEM,5,7   
+FITEM,5,9   
+FITEM,5,-12 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,5, , , , ,1  
+!*  
 MSHAPE,0,3D 
 MSHKEY,1
 !*  
@@ -73,53 +90,46 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
+FINISH  
+/SOL
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
 /VIEW,1,,,1 
 /ANG,1  
 /REP,FAST   
-FINISH  
-/SOL
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
 !*  
 ANTYPE,0
-NSUBST,50,50,50 
+NSUBST,10,10,10 
 OUTRES,ERASE
 OUTRES,ALL,ALL  
 TIME,1  
-FLST,2,4,1,ORDE,4   
+FLST,2,36,1,ORDE,6  
 FITEM,2,1   
-FITEM,2,-2  
-FITEM,2,5   
 FITEM,2,-6  
+FITEM,2,67  
+FITEM,2,-72 
+FITEM,2,133 
+FITEM,2,-156
 !*  
 /GO 
 D,P51X, , , , , ,ALL, , , , ,   
 /VIEW,1,1,1,1   
 /ANG,1  
 /REP,FAST   
-FLST,2,4,1,ORDE,4   
-FITEM,2,3   
-FITEM,2,-4  
-FITEM,2,7   
-FITEM,2,-8  
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
 !*  
 /GO 
-F,P51X,FX,250   
-/STATUS,SOLU
-SOLVE   
+DA,P51X,UX,0.02 
 FINISH  
 /POST1  
-!*  
-/EFACET,1   
-PLNSOL, U,X, 0,1.0  
-!*  
-/EFACET,1   
-PLNSOL, S,X, 0,1.0  
-!*  
-/EFACET,1   
-PLNSOL, S,EQV, 0,1.0
-YOUNG = 200e6
-POISSON = 0.3
-T1 = 1
-
-TB,USER,1,1,2,
-TBTEMP,T1
-TBDATA,,YOUNG,POISSON
+FINISH  
+/SOL
+/STATUS,SOLU
+SOLVE   
+FINISH
