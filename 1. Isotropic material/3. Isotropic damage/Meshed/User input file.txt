@@ -1,0 +1,146 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  isotrpic damage meshed  
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       16:00:26  
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+/REPLOT,RESIZE  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   isotropic damage   
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+ERESX,YES   
+!*  
+ET,1,SOLID185   
+!*  
+!*  
+YOUNG = 210e3
+POISSON = 0.33
+T1 = 1
+
+TB,USER,1,1,2,
+TBTEMP,T1
+TBDATA,,YOUNG,POISSON
+TB,STATE,1,,1 
+
+K,1,,,, 
+K,2,,1,,
+K,3,10,1,,  
+K,4,10,,,   
+FLST,2,4,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,1,,,, 
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,5, , , , ,1 
+!*  
+FLST,5,8,4,ORDE,6   
+FITEM,5,1   
+FITEM,5,3   
+FITEM,5,5   
+FITEM,5,7   
+FITEM,5,9   
+FITEM,5,-12 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,2, , , , ,1  
+!*  
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+FINISH  
+/SOL
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/VIEW,1,,,1 
+/ANG,1  
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+!*  
+ANTYPE,0
+NSUBST,10,10,10
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1  
+FLST,2,36,1,ORDE,6  
+FITEM,2,1   
+FITEM,2,-6  
+FITEM,2,67  
+FITEM,2,-72 
+FITEM,2,133 
+FITEM,2,-156
+!*  
+/USER,  1   
+/VIEW,  1, -0.964407143518    , -0.112850814609    ,  0.239130832753
+/ANG,   1,   2.60399499131  
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+!*  
+/GO 
+DA,P51X,ALL,0   
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
+!*  
+/GO 
+DA,P51X,UX,0.02 
+/STATUS,SOLU
+SOLVE 
