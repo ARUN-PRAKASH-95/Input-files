@@ -26,8 +26,6 @@ ERESX,NO
 !*  
 ET,1,SOLID185   
 !* 
-!*  
-
 
 T1 = 1
 TB,USER,1,1,9,9  
@@ -71,7 +69,9 @@ CMDELE,_Y2
 /UI,MESH,OFF
 FINISH  
 /SOL
-!*  
+!*
+
+  
 ANTYPE,0
 NSUBST,10,10,10
 OUTRES,ERASE
@@ -151,7 +151,7 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-D,P51X, ,0.5, , , ,UX, , , , ,
+D,P51X, ,0.3, , , ,UX, , , , ,
 FINISH  
 /POST1  
 FINISH  

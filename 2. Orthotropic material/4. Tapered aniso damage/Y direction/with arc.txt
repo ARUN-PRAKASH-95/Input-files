@@ -48,7 +48,7 @@ VEXT,P51X, , ,0,0,1,,,,
 
 !* Meshing
 !*  
-LESIZE,ALL, , ,6, ,1, , ,1,
+LESIZE,ALL, , ,3, ,1, , ,1,
 MSHAPE,0,3D 
 MSHKEY,1
 !*  
@@ -94,6 +94,7 @@ CMDELE,_Y2
 /ANG,   1,   111.977497932  
 /REPLO  
 FINISH  
+
 /SOL
 !*  
 ANTYPE,0
@@ -103,7 +104,14 @@ OUTRES,ALL,ALL
 OUTRES,SVAR,ALL,,NSVAR 
 TIME,1  
 FLST,2,1,1,ORDE,1   
-FITEM,2,1   
+FITEM,2,1 
+
+ESEL,S,MAT,MATPOLY
+inis,set,DTYPE,STRE
+inis,defi,,,,,100,100
+ALLSEL 
+
+
 !*  
 /GO 
 D,P51X, , , , , ,ALL, , , , ,   

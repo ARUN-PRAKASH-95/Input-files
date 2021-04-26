@@ -1,0 +1,114 @@
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       14:40:12
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       14:40:34
+
+
+!*  
+/PREP7  
+!*  
+ERESX,NO
+ET,1,SOLID185   
+!*  
+!*  
+!*  
+T1 = 1
+TB,USER,1,1,9,9  
+TBTEMP,T1
+TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
+TB,STATE,1,,1
+
+
+K,1,,,, 
+K,2,3,,1,   
+K,3,6,,,
+K,4,,,3,
+K,5,3,,2,   
+K,6,6,,3,   
+/VIEW,1,,-1 
+/ANG,1  
+/REP,FAST   
+LSTR,       1,       4  
+LSTR,       3,       6  
+LARC,       1,       3,       2 
+LARC,       4,       6,       5 
+FLST,2,4,4  
+FITEM,2,1   
+FITEM,2,3   
+FITEM,2,2   
+FITEM,2,4   
+AL,P51X 
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,1,0,,,, 
+
+!!!!!!!!!!!!!!!Meshing  
+!*  
+LESIZE,ALL, , ,4, ,1, , ,1, 
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VSWEEP,_Y1  
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,100,1000,100
+OUTRES,ERASE
+OUTRES,ALL,ALL 
+OUTRES,SVAR,ALL,,NSVAR  
+TIME,1  
+
+FLST,2,1,4,ORDE,1   
+FITEM,2,7   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,11  
+!*  
+/GO 
+DL,P51X, ,UZ,   
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
+!*  
+/GO 
+DA,P51X,UX,0.3
+/USER,  1   
+/VIEW,  1, -0.835107996024    ,  0.141300830526    ,  0.531628357285
+/ANG,   1,  -51.5213763519  
+/REPLO  
+FLST,2,1,4,ORDE,1   
+FITEM,2,5   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,10  
+!*  
+/GO 
+DL,P51X, ,UZ,   
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+!*  
+/GO 
+DA,P51X,UX,0
+/VIEW,  1,  0.670755658764    ,  0.329525667633    ,  0.664454423273
+/ANG,   1,  -17.6161719471  
+/REPLO  
+/STATUS,SOLU
+SOLVE   

@@ -1,0 +1,141 @@
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       14:40:12
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       14:40:34
+
+
+!*  
+/PREP7  
+!*  
+ERESX,YES 
+ET,1,SOLID185   
+!*  
+!*  
+!*  
+T1 = 1
+TB,USER,1,1,9,9  
+TBTEMP,T1
+TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
+TB,STATE,1,,6
+
+
+K,1,,,, 
+K,2,3,,1,   
+K,3,6,,,
+K,4,,,3,
+K,5,3,,2,   
+K,6,6,,3,   
+/VIEW,1,,-1 
+/ANG,1  
+/REP,FAST 
+
+
+FINISH  
+/SOL
+FINISH  
+/PREP7  
+FLST,2,6,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,6   
+FITEM,2,5   
+FITEM,2,4   
+A,P51X  
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,1,0,,,, 
+!*  
+LESIZE,ALL, , ,4, ,1, , ,1, 
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VSWEEP,_Y1  
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+
+
+
+
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,200,1000,1
+OUTRES,ERASE
+OUTRES,ALL,ALL
+OUTRES,SVAR,ALL,,NSVAR    
+TIME,1  
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,15  
+!*  
+/GO 
+DL,P51X, ,UZ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,11  
+!*  
+/GO 
+D,P51X, , , , , ,UY,UZ, , , ,   
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
+!*  
+/GO 
+DA,P51X,UX,0.2  
+/USER,  1   
+/VIEW,  1, -0.415628593618    ,  0.105260424247    ,  0.903422999073
+/ANG,   1,  -25.3439995793  
+/REPLO  
+/VIEW,  1, -0.981569744517    , -0.165031403597    ,  0.963611564649E-01
+/ANG,   1,  -25.3541264833  
+/REPLO  
+/VIEW,  1, -0.976149861182    , -0.820039839779E-01, -0.201014415217
+/ANG,   1,  -24.8589853177  
+/REPLO  
+FLST,2,1,4,ORDE,1   
+FITEM,2,12  
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,13  
+!*  
+/GO 
+DL,P51X, ,UZ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,16  
+!*  
+/GO 
+D,P51X, , , , , ,UY,UZ, , , ,   
+FLST,2,1,5,ORDE,1   
+FITEM,2,8   
+!*  
+/GO 
+DA,P51X,UX,0
+/VIEW,  1, -0.182279509971    ,  0.286691236092    ,  0.940522363048
+/ANG,   1,  -10.1503348364  
+/REPLO  
+/VIEW,  1,  0.767005472323    ,  0.230225873235    ,  0.598914562120
+/ANG,   1,   9.00205446616  
+/REPLO  
+/VIEW,  1,  0.681637399042    ,  0.242493055962    ,  0.690338738619
+/ANG,   1,   7.30122948199  
+/REPLO  
+/STATUS,SOLU
+SOLVE   
+
