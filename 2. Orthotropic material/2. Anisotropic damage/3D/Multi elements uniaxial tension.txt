@@ -1,8 +1,12 @@
 /CLEAR,START
-/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       11:16:36
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       17:13:38
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  isotrpic damage meshed   
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       16:00:26  
 /input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
 !*  
-!!!!!!!!!!!!!!!!!!!!!!!   Bar 1 elem boundary   
+/REPLOT,RESIZE  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   isotropic damage   
 !*  
 /NOPR   
 KEYW,PR_SET,1   
@@ -21,19 +25,18 @@ KEYW,PR_MULTI,0
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
 !*  
-/PREP7
-ERESX,YES 
+/PREP7  
+ERESX,NO   
 !*  
 ET,1,SOLID185   
-!* 
 !*  
-
-
+!*  
 T1 = 1
 TB,USER,1,1,9,9  
 TBTEMP,T1
 TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
 TB,STATE,1,,6 
+
 
 K,1,,,, 
 K,2,,1,,
@@ -51,8 +54,32 @@ A,P51X
 FLST,2,1,5,ORDE,1   
 FITEM,2,1   
 VEXT,P51X, , ,0,0,1,,,, 
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
 !*  
-LESIZE,ALL, , ,1, ,1, , ,1, 
+LESIZE,_Y1, , ,5, , , , ,1  
+!*  
+FLST,5,8,4,ORDE,6   
+FITEM,5,1   
+FITEM,5,3   
+FITEM,5,5   
+FITEM,5,7   
+FITEM,5,9   
+FITEM,5,-12 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,2, , , , ,1  
+!*  
 MSHAPE,0,3D 
 MSHKEY,1
 !*  
@@ -70,99 +97,69 @@ CMDELE,_Y2
 !*  
 /UI,MESH,OFF
 FINISH  
-/SOL
-!*  
+/USER,  1   
+/VIEW,  1, -0.960776609896    , -0.250962544332    , -0.118008928557
+/ANG,   1,  -24.8259844157  
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/VIEW,  1, -0.982024139866    , -0.147806803280    , -0.117395645683
+/ANG,   1,  -24.8520306324  
+/REPLO  
+!!!!!!!!!!!!!!!!!!!!!!  Note
+/SOLU   
 ANTYPE,0
-NSUBST,100,1000,100
+NSUBST,100,100,100
 OUTRES,ERASE
 OUTRES,ALL,ALL  
 OUTRES,SVAR,ALL,,NSVAR
 TIME,1  
-/USER,  1   
-/VIEW,  1, -0.876429084828    ,  0.630392259854E-01,  0.477386756471
-/ANG,   1,  -41.0450072367  
-/REPLO  
-/DIST, 1 ,0.924021,1
-/REP,FAST   
-/DIST, 1 ,0.924021,1
-/REP,FAST   
-/DIST, 1 ,0.924021,1
-/REP,FAST   
-/DIST, 1 ,0.924021,1
-/REP,FAST   
-/VIEW,  1, -0.993644673377    , -0.748165085628E-01,  0.840996618094E-01
-/ANG,   1,  -40.3254434387  
-/REPLO  
-/VIEW,  1, -0.952224887695    ,  0.173833630007    ,  0.251096858470
-/ANG,   1,  -39.9511739057  
-/REPLO  
-/VIEW,  1, -0.994587206832    , -0.305425026008E-01, -0.993148706922E-01
-/ANG,   1,  -41.3451601383  
-/REPLO  
-FLST,2,1,5,ORDE,1   
-FITEM,2,3   
-!*  
-/GO 
-DA,P51X,UX, 
-FLST,2,1,4,ORDE,1   
-FITEM,2,1   
-!*  
-/GO 
-DL,P51X, ,UX,   
-FLST,2,1,4,ORDE,1   
-FITEM,2,1   
-!*  
-/GO 
-DL,P51X, ,UZ,   
-FLST,2,1,4,ORDE,1   
-FITEM,2,9   
-!*  
-/GO 
-DL,P51X, ,UX,   
-FLST,2,1,4,ORDE,1   
-FITEM,2,9   
-!*  
-/GO 
-DL,P51X, ,UY,   
+/STATUS,SOLU
 FLST,2,1,1,ORDE,1   
 FITEM,2,1   
 !*  
 /GO 
-D,P51X, , , , , ,ALL, , , , ,   
+D,P51X, ,0, , , ,ALL, , , , ,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UX,0  
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UZ,0  
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UX,0  
+FLST,2,1,4,ORDE,1   
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UY,0  
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+!*  
+/GO 
+DA,P51X,UX,0
 /VIEW,1,1,1,1   
 /ANG,1  
 /REP,FAST   
-/DIST, 1 ,1.082226,1
+/AUTO,1 
 /REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-/DIST, 1 ,1.082226,1
-/REP,FAST   
-FLST,2,4,1,ORDE,4   
-FITEM,2,3   
-FITEM,2,-4  
-FITEM,2,7   
-FITEM,2,-8  
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
 !*  
 /GO 
-D,P51X, ,1, , , ,UX, , , , ,
-FINISH  
-/POST1  
-FINISH  
-/SOL
+DA,P51X,UX,1
 /STATUS,SOLU
-SOLVE   
-FINISH  
-/POST1  
-!*  
-/EFACET,1   
-PLNSOL, U,X, 0,1.0  
-!*  
-/EFACET,1   
-PLNSOL, S,X, 0,1.0  
+SOLVE

@@ -13,12 +13,16 @@ ET,1,SOLID185
 !*  
 !*  
 !*  
+YOUNG = 210e3
+POISSON = 0.33
 T1 = 1
-TB,USER,1,1,9,9  
-TBTEMP,T1
-TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
-TB,STATE,1,,6
+ 
 
+
+TB,USER,1,1,2,
+TBTEMP,T1
+TBDATA,,YOUNG,POISSON
+TB,STATE,1,,1 
 
 K,1,,,, 
 K,2,3,,1,   
@@ -48,7 +52,7 @@ VEXT,P51X, , ,0,1,0,,,,
 
 !!!!!!!!!!!!!!!Meshing  
 !*  
-LESIZE,ALL, , ,3, ,1, , ,1, 
+LESIZE,ALL, , ,5, ,1, , ,1, 
 CM,_Y,VOLU  
 VSEL, , , ,       1 
 CM,_Y1,VOLU 
@@ -87,7 +91,7 @@ FLST,2,1,5,ORDE,1
 FITEM,2,5   
 !*  
 /GO 
-DA,P51X,UX,1
+DA,P51X,UX,0.01
 /USER,  1   
 /VIEW,  1, -0.835107996024    ,  0.141300830526    ,  0.531628357285
 /ANG,   1,  -51.5213763519  

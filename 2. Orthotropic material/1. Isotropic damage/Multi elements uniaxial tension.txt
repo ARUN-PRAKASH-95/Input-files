@@ -64,7 +64,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,5, , , , ,1  
+LESIZE,_Y1, , ,4, , , , ,1  
 !*  
 FLST,5,8,4,ORDE,6   
 FITEM,5,1   
@@ -160,7 +160,7 @@ FLST,2,1,5,ORDE,1
 FITEM,2,5   
 !*  
 /GO 
-DA,P51X,UX,0.5
+DA,P51X,UX,0.8
 
 /STATUS,SOLU
 SOLVE

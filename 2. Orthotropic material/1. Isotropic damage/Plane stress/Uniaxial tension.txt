@@ -1,0 +1,66 @@
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       13:24:21
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+/PREP7  
+!*  
+ET,1,PLANE182  
+ERESX,NO 
+
+KEYOPT,1,1,0
+KEYOPT,1,3,3
+KEYOPT,1,6,0
+!*  
+R,1,0.1,
+!*  
+
+
+T1 = 1
+TB,USER,1,1,6,6  
+TBTEMP,T1
+TBDATA,,55000e6,9500e6,0.33,5500e6,2500e6,-2000e6
+TB,STATE,1,,1 
+BLC4, , ,1,1
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
+MSHAPE,0,2D 
+MSHKEY,0
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       1 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,100,100,100
+OUTRES,ERASE
+OUTRES,ALL,ALL 
+OUTRES,SVAR,ALL,,NSVAR 
+TIME,1  
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,4   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+DL,P51X, ,UX,0.4
+/STATUS,SOLU
+SOLVE  

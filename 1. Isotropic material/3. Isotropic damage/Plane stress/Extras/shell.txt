@@ -1,0 +1,76 @@
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SHELL181   
+!*  
+!*  
+!*  
+!*  
+!*  
+!*  
+R,1,0.1,
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,210e3  
+MPDATA,PRXY,1,,0.33 
+BLC4, , ,1,1
+!*  
+LESIZE,ALL, , ,3, ,1, , ,1, 
+MSHAPE,0,2D 
+MSHKEY,0
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       1 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+FINISH  
+/SOL
+!*  
+ANTYPE,0
+NSUBST,10,10,10 
+OUTRES,ERASE
+OUTRES,ALL,ALL  
+TIME,1  
+FLST,2,1,4,ORDE,1   
+FITEM,2,4   
+!*  
+/GO 
+DL,P51X, ,ALL,  
+FLST,2,1,4,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+DL,P51X, ,UX,0.01   
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,2

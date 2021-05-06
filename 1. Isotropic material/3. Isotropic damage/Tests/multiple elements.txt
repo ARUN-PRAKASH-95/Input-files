@@ -1,7 +1,4 @@
-/CLEAR,START
-/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       17:13:38
-/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  isotrpic damage meshed   
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  isotrpic damage meshed  
 /COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       16:00:26  
 /input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
 !*  
@@ -30,13 +27,16 @@ ERESX,YES
 !*  
 ET,1,SOLID185   
 !*  
-!*  
-T1 = 1
-TB,USER,1,1,9,9  
-TBTEMP,T1
-TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
-TB,STATE,1,,6 
 
+!*  
+YOUNG = 210e3
+POISSON = 0.33
+T1 = 1
+
+TB,USER,1,1,2,
+TBTEMP,T1
+TBDATA,,YOUNG,POISSON
+TB,STATE,1,,1 
 
 K,1,,,, 
 K,2,,1,,
@@ -64,7 +64,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,5, , , , ,1  
+LESIZE,_Y1, , ,5, , , , ,1 
 !*  
 FLST,5,8,4,ORDE,6   
 FITEM,5,1   
@@ -78,7 +78,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,2, , , , ,1  
+LESIZE,_Y1, , ,4, , , , ,1  
 !*  
 MSHAPE,0,3D 
 MSHKEY,1
@@ -97,68 +97,52 @@ CMDELE,_Y2
 !*  
 /UI,MESH,OFF
 FINISH  
-/USER,  1   
-/VIEW,  1, -0.960776609896    , -0.250962544332    , -0.118008928557
-/ANG,   1,  -24.8259844157  
-/REPLO  
-/DIST, 1 ,0.924021,1
+/SOL
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+/VIEW,1,,,1 
+/ANG,1  
 /REP,FAST   
 /DIST, 1 ,0.924021,1
 /REP,FAST   
-/DIST, 1 ,0.924021,1
+/DIST, 1 ,1.082226,1
 /REP,FAST   
-/DIST, 1 ,0.924021,1
-/REP,FAST   
-/VIEW,  1, -0.982024139866    , -0.147806803280    , -0.117395645683
-/ANG,   1,  -24.8520306324  
-/REPLO  
-!!!!!!!!!!!!!!!!!!!!!!  Note
-/SOLU   
+!*  
 ANTYPE,0
-NSUBST,100,100,100
+NSUBST,200,200,200
 OUTRES,ERASE
-OUTRES,ALL,ALL  
-OUTRES,SVAR,ALL,,NSVAR
+OUTRES,ALL,ALL 
+OUTRES,SVAR,ALL,,NSVAR 
 TIME,1  
-/STATUS,SOLU
-FLST,2,1,1,ORDE,1   
+FLST,2,36,1,ORDE,6  
 FITEM,2,1   
+FITEM,2,-6  
+FITEM,2,67  
+FITEM,2,-72 
+FITEM,2,133 
+FITEM,2,-156
 !*  
-/GO 
-D,P51X, ,0, , , ,ALL, , , , ,   
-FLST,2,1,4,ORDE,1   
-FITEM,2,1   
-!*  
-/GO 
-DL,P51X, ,UX,0  
-FLST,2,1,4,ORDE,1   
-FITEM,2,1   
-!*  
-/GO 
-DL,P51X, ,UZ,0  
-FLST,2,1,4,ORDE,1   
-FITEM,2,9   
-!*  
-/GO 
-DL,P51X, ,UX,0  
-FLST,2,1,4,ORDE,1   
-FITEM,2,9   
-!*  
-/GO 
-DL,P51X, ,UY,0  
+/USER,  1   
+/VIEW,  1, -0.964407143518    , -0.112850814609    ,  0.239130832753
+/ANG,   1,   2.60399499131  
+/REPLO  
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
 FLST,2,1,5,ORDE,1   
 FITEM,2,3   
 !*  
 /GO 
-DA,P51X,UX,0
+DA,P51X,ALL,0   
 /VIEW,1,1,1,1   
 /ANG,1  
-/REP,FAST   
-/AUTO,1 
 /REP,FAST   
 FLST,2,1,5,ORDE,1   
 FITEM,2,5   
 !*  
 /GO 
-DA,P51X,UX,1
-
+DA,P51X,UX,0.1
+/STATUS,SOLU
+SOLVE 

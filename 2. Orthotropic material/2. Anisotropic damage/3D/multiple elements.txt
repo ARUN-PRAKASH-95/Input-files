@@ -1,3 +1,5 @@
+
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  isotrpic damage meshed  
 /COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       16:00:26  
 /input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
@@ -21,6 +23,8 @@ KEYW,PR_MULTI,0
 /COM,   
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
+/OUT,User,out
+
 !*  
 /PREP7  
 ERESX,NO 
@@ -61,7 +65,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,5, , , , ,1 
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 FLST,5,8,4,ORDE,6   
 FITEM,5,1   
@@ -75,7 +79,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,3, , , , ,1  
+LESIZE,_Y1, , ,5, , , , ,1  
 !*  
 MSHAPE,0,3D 
 MSHKEY,1
@@ -107,7 +111,7 @@ FINISH
 /REP,FAST   
 !*  
 ANTYPE,0
-NSUBST,50,1000,50
+NSUBST,100,1000,100
 OUTRES,ERASE
 OUTRES,ALL,ALL 
 OUTRES,SVAR,ALL,,NSVAR 
@@ -140,6 +144,6 @@ FLST,2,1,5,ORDE,1
 FITEM,2,5   
 !*  
 /GO 
-DA,P51X,UX,1
+DA,P51X,UX,0.8
 /STATUS,SOLU
 SOLVE 
