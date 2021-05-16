@@ -36,7 +36,7 @@ T1 = 1
 TB,USER,1,1,2,
 TBTEMP,T1
 TBDATA,,YOUNG,POISSON
-TB,STATE,1,,1 
+TB,STATE,1,,2
 
 K,1,,,, 
 K,2,,1,,
@@ -64,7 +64,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,5, , , , ,1 
+LESIZE,_Y1, , ,3, , , , ,1 
 !*  
 FLST,5,8,4,ORDE,6   
 FITEM,5,1   
@@ -78,7 +78,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,4, , , , ,1  
+LESIZE,_Y1, , ,1, , , , ,1  
 !*  
 MSHAPE,0,3D 
 MSHKEY,1
@@ -96,6 +96,18 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
+esel,all,ELEM
+*get,elemCount,ELEM,,COUNT
+*vget,elemList,ELEM,,ELIST
+
+
+*do,iterator,1,elemCount,1
+	esel,none
+	esel,ALL,ELEM,,elemList(%iterator%)
+	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
+	inistate,set,dtype,svar
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/8%
+*enddo  
 FINISH  
 /SOL
 /VIEW,1,1,1,1   
@@ -108,9 +120,13 @@ FINISH
 /REP,FAST   
 /DIST, 1 ,1.082226,1
 /REP,FAST   
+
+
+
+
 !*  
 ANTYPE,0
-NSUBST,200,200,200
+NSUBST,50,50,50
 OUTRES,ERASE
 OUTRES,ALL,ALL 
 OUTRES,SVAR,ALL,,NSVAR 
@@ -144,5 +160,6 @@ FITEM,2,5
 !*  
 /GO 
 DA,P51X,UX,0.1
+ 
 /STATUS,SOLU
 SOLVE 
