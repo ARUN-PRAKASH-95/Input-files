@@ -31,18 +31,24 @@ ERESX,NO
 !*  
 ET,1,SOLID185   
 !*  
+!*  
+KEYOPT,1,2,1
+KEYOPT,1,3,0
+KEYOPT,1,6,0
+KEYOPT,1,8,0
+!*  
 
 !*  
 T1 = 1
 TB,USER,1,1,9,9  
 TBTEMP,T1
 TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
-TB,STATE,1,,6  
+TB,STATE,1,,7 
 
 K,1,,,, 
-K,2,,1,,
-K,3,10,1,,  
-K,4,10,,,   
+K,2,,0.1,,
+K,3,1,0.1,,  
+K,4,1,,,  
 FLST,2,4,3  
 FITEM,2,1   
 FITEM,2,2   
@@ -54,7 +60,7 @@ A,P51X
 /REP,FAST   
 FLST,2,1,5,ORDE,1   
 FITEM,2,1   
-VEXT,P51X, , ,0,0,1,,,, 
+VEXT,P51X, , ,0,0,0.1,,,, 
 FLST,5,4,4,ORDE,4   
 FITEM,5,2   
 FITEM,5,4   
@@ -65,7 +71,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,10, , , , ,1 
+LESIZE,_Y1, , ,100, , , , ,1 
 !*  
 FLST,5,8,4,ORDE,6   
 FITEM,5,1   
@@ -79,7 +85,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,5, , , , ,1  
+LESIZE,_Y1, , ,2, , , , ,1  
 !*  
 MSHAPE,0,3D 
 MSHKEY,1
@@ -97,6 +103,19 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
+esel,all,ELEM
+*get,elemCount,ELEM,,COUNT
+*vget,elemList,ELEM,,ELIST
+
+
+*do,iterator,1,elemCount,1
+	esel,none
+	esel,ALL,ELEM,,elemList(%iterator%)
+	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
+	inistate,set,dtype,svar
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol%
+*enddo  
+
 FINISH  
 /SOL
 /VIEW,1,1,1,1   
@@ -111,7 +130,7 @@ FINISH
 /REP,FAST   
 !*  
 ANTYPE,0
-NSUBST,100,1000,100
+NSUBST,100,10000,100
 OUTRES,ERASE
 OUTRES,ALL,ALL 
 OUTRES,SVAR,ALL,,NSVAR 
@@ -144,6 +163,6 @@ FLST,2,1,5,ORDE,1
 FITEM,2,5   
 !*  
 /GO 
-DA,P51X,UX,0.8
+DA,P51X,UX,0.2
 /STATUS,SOLU
 SOLVE 

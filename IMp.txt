@@ -1,0 +1,22 @@
+http://ansys24.ir/wp-content/uploads/2015/10/initial_state_v121_2.pdf
+/prep7
+
+...
+
+esel,all,ELEM
+*get,elemCount,ELEM,,COUNT
+*vget,elemList,ELEM,,ELIST
+
+
+*do,iterator,1,elemCount,1
+	esel,none
+	esel,ALL,ELEM,,elemList(%iterator%)
+	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
+	inistate,set,dtype,svar
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/8%
+*enddo  
+
+...
+
+\solu
+solve
