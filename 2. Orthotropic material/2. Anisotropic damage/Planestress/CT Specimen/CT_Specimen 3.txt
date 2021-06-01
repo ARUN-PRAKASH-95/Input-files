@@ -1,0 +1,203 @@
+!!!!!!!!!!!!!!!!!!!!  CT SPECIMEN   
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       11:58:57
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,PLANE182   
+!*  
+KEYOPT,1,1,0
+KEYOPT,1,3,3
+KEYOPT,1,6,0
+!*  
+!*  
+R,1,0.0038, 
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,55000e6
+MPDATA,PRXY,1,,0.3  
+
+MPDATA,EX,2,,55000e9
+MPDATA,PRXY,2,,0.3  
+
+/VIEW,1,,,-1
+/ANG,1  
+/REP,FAST   
+/ANG,1,-30,ZS,1 
+/REP,FAST   
+/ANG,1,-30,ZS,1 
+/REP,FAST   
+/ANG,1,-30,ZS,1 
+/REP,FAST  
+
+K,1,0.0005,,,   
+K,2,0.0005,0.0175,, 
+K,3,0.0005,0.0225,, 
+K,4,,0.0225,,   
+K,5,,0.0625,,   
+K,6,0.0075,0.0625,, 
+K,7,0.03,0.0625,,   
+K,8,0.03,,, 
+K,9,0.0075,0.0175,, 
+K,10,0.01625,0.0125,,   
+FLST,2,6,3  
+FITEM,2,9   
+FITEM,2,2   
+FITEM,2,3   
+FITEM,2,4   
+FITEM,2,5   
+FITEM,2,6   
+A,P51X  
+FLST,2,6,3  
+FITEM,2,2   
+FITEM,2,1   
+FITEM,2,8   
+FITEM,2,7   
+FITEM,2,6   
+FITEM,2,9   
+A,P51X  
+
+CYL4,0.01625,0.0125,0.0065  
+ASBA,       2,       3  
+
+FLST,5,1,4,ORDE,1   
+FITEM,5,6   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,50, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,5   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,20, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,4   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,40, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,2   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1  
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,1   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,17, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,3   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+MSHAPE,0,2D 
+MSHKEY,0
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       1 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+EPLOT   
+APLOT   
+FLST,5,1,4,ORDE,1   
+FITEM,5,10  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,20, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,9   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,30, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,25, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,7   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,15, , , , ,1 
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       4 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+NUMMRG,NODE  

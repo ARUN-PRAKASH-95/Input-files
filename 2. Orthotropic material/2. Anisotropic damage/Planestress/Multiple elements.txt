@@ -37,7 +37,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,2, , , , ,1  
+LESIZE,_Y1, , ,1, , , , ,1  
 !*  
 MSHAPE,0,2D 
 MSHKEY,0
