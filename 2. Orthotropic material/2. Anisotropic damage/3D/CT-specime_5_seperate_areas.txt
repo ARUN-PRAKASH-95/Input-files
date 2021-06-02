@@ -1,0 +1,354 @@
+!!!!!!!!!!!!!!!!!!!  CT SPECIMEN   
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       11:58:57
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,PLANE182   
+!*  
+KEYOPT,1,1,0
+KEYOPT,1,3,0
+KEYOPT,1,6,0
+ 
+ET,2,MASS21 
+!*
+R,2,0.001,0.001,0.001, , , ,
+!*  
+!*  
+!* 
+ET,3,SOLID185   
+!*  
+!MPTEMP,,,,,,,,  
+!MPTEMP,1,0  
+!MPDATA,EX,1,,55000e6
+!MPDATA,PRXY,1,,0.3  
+
+!*  
+T1 = 1
+TB,USER,1,1,9,9  
+TBTEMP,T1
+TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
+TB,STATE,1,,7 
+
+/VIEW,1,,,-1
+/ANG,1  
+/REP,FAST   
+/ANG,1,-30,ZS,1 
+/REP,FAST   
+/ANG,1,-30,ZS,1 
+/REP,FAST   
+/ANG,1,-30,ZS,1 
+/REP,FAST  
+
+
+K,1,0.0005,,,   
+K,2,0.0005,0.0175,, 
+K,3,0.0005,0.0225,, 
+K,4,,0.0225,,
+K,5,,0.0625,,   
+K,6,0.0005,0.0625,,
+K,7,0.0075,0.0625,, 
+K,8,0.03,0.0625,,   
+K,9,0.03,0.0225,, 
+K,10,0.03,,, 
+K,11,0.0075,0.0175,, 
+K,12,0.0075,0.0225,, 
+K,13,0.01625,0.0125,,   
+ 
+FLST,2,4,3  
+FITEM,2,4   
+FITEM,2,3   
+FITEM,2,6   
+FITEM,2,5   
+A,P51X  
+FLST,2,4,3  
+FITEM,2,3   
+FITEM,2,12  
+FITEM,2,7   
+FITEM,2,6   
+A,P51X  
+FLST,2,4,3  
+FITEM,2,3   
+FITEM,2,2   
+FITEM,2,11  
+FITEM,2,12  
+A,P51X  
+FLST,2,4,3  
+FITEM,2,12  
+FITEM,2,9   
+FITEM,2,8   
+FITEM,2,7   
+A,P51X  
+FLST,2,6,3  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,11  
+FITEM,2,12  
+FITEM,2,9   
+FITEM,2,10  
+A,P51X  
+
+
+CYL4,0.01625,0.0125,0.0065 
+ASBA,       5,       6  
+NUMSTR,NODE,50, 
+NUMSTR,ELEM,1,  
+NUMSTR,KP,1,
+NUMSTR,LINE,1,  
+NUMSTR,AREA,1,  
+NUMSTR,VOLU,1,  
+
+FLST,5,3,4,ORDE,3   
+FITEM,5,2   
+FITEM,5,4   
+FITEM,5,6   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,30, , , , ,1 
+!*  
+FLST,5,2,4,ORDE,2   
+FITEM,5,1   
+FITEM,5,3   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,2, , , , ,1  
+!*  
+FLST,5,3,4,ORDE,3   
+FITEM,5,5   
+FITEM,5,7   
+FITEM,5,9   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,5, , , , ,1  
+!*  
+FLST,5,2,4,ORDE,2   
+FITEM,5,8   
+FITEM,5,10  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+MSHAPE,0,2D 
+MSHKEY,0
+!*  
+FLST,5,3,5,ORDE,2   
+FITEM,5,1   
+FITEM,5,-3  
+CM,_Y,AREA  
+ASEL, , , ,P51X 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+APLOT   
+FLST,5,1,4,ORDE,1   
+FITEM,5,12  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,15, , , , ,1 
+!*  
+FLST,5,2,4,ORDE,2   
+FITEM,5,11  
+FITEM,5,13  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,8, , , , ,1  
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       4 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+APLOT   
+FLST,5,1,4,ORDE,1   
+FITEM,5,15  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,16  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,15, , , , ,1 
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       7 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+NUMMRG,NODE
+
+TYPE,   3   
+EXTOPT,ESIZE,5,0,   
+EXTOPT,ACLEAR,1 
+!*  
+EXTOPT,ATTR,0,0,0   
+MAT,1   
+REAL,2  
+ESYS,0  
+!*  
+FLST,2,5,5,ORDE,3   
+FITEM,2,1   
+FITEM,2,-4  
+FITEM,2,7   
+VEXT,P51X, , ,0,0,0.0038,,,, 
+EPLOT  
+
+N,1,0.01625,0.0125,0.0019,,,,   
+TYPE,   2   
+MAT,       1
+REAL,       2   
+ESYS,       0   
+SECNUM, 
+TSHAP,LINE  
+!*  
+E,       1  
+EPLOT   
+/DIST, 1 ,0.924021,1
+/REP,FAST 
+NPLOT   
+FLST,5,4,5,ORDE,2   
+FITEM,5,27  
+FITEM,5,-30 
+ASEL,S, , ,P51X 
+NSLA,S,1
+CM,n,NODE   
+CMSEL,A,n   
+/MREP,EPLOT 
+rbe3,1,all,n
+ALLSEL,ALL  
+EPLOT   
+esel,all,ELEM
+*get,elemCount,ELEM,,COUNT
+*vget,elemList,ELEM,,ELIST
+
+
+*do,iterator,1,elemCount,1
+	esel,none
+	esel,ALL,ELEM,,elemList(%iterator%)
+	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
+	inistate,set,dtype,svar
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol%
+*enddo  
+
+FINISH 
+
+
+/SOL
+ANTYPE,0
+NSUBST,100,10000,100
+OUTRES,ERASE
+OUTRES,ALL,ALL 
+OUTRES,SVAR,ALL,,NSVAR 
+TIME,1
+FLST,2,1,5,ORDE,1   
+FITEM,2,10  
+!*  
+/GO 
+DA,P51X,UX, 
+FLST,2,1,5,ORDE,1   
+FITEM,2,10  
+!*  
+/GO 
+DA,P51X,UZ, 
+LPLOT   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+/DIST, 1 ,0.924021,1
+/REP,FAST   
+FLST,2,1,4,ORDE,1   
+FITEM,2,28  
+!*  
+/GO 
+DL,P51X, ,ALL,  
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+NPLOT   
+/VIEW,  1, -0.245129365598    ,  0.314265066171    , -0.917141789641
+/ANG,   1,  -103.061032941  
+/REPLO  
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,UY,UZ, , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, ,0.02, , , ,UX, , , , ,
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/DIST, 1 ,1.082226,1
+/REP,FAST   
+/STATUS,SOLU
+SOLVE   
+ 

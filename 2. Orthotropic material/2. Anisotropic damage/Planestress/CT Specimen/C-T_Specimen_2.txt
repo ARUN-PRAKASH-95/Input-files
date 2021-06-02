@@ -112,7 +112,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,30, , , , ,1 
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 FLST,5,1,4,ORDE,1   
 FITEM,5,6   
@@ -130,7 +130,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,20, , , , ,1 
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 FLST,5,3,4,ORDE,3   
 FITEM,5,5   
@@ -141,7 +141,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,20, , , , ,1 
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 MSHAPE,0,2D 
 MSHKEY,0
