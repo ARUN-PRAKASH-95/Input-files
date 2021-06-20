@@ -1,0 +1,132 @@
+/TITLE, Laminate #1: [0-2/90-4]s
+/UNITS,MPA ! Units are in mm, MPa, and Newtons
+\CLEAR,START
+
+/PREP7
+F2t = 80.0 ! MPa
+F6 = 48.0 ! MPa
+Gc = 25.0 ! kJ/m^2
+
+
+ET,1,SHELL181      ! Element type
+! LAMINATE STACKING SEQUENCE
+SECTYPE,1,SHELL,,#1 ! SECTYPE, SEID, TYPE, SUBTYPE, NAME
+SECDATA,0.288,1,0 ! thickness, material, angle
+SECDATA,1.152,1,90
+SECDATA,0.288,1,0
+
+
+! ORTHOTROPIC MATERIAL PROPERTIES
+MP,EX,1,44.7E3
+MP,EY,1,12.7E3
+MP,EZ,1,12.7E3
+MP,GXY,1,5.8E3
+MP,GYZ,1,4.5E3
+MP,GXZ,1,5.8E3
+MP,PRXY,1,0.297
+MP,PRYZ,1,0.4111
+MP,PRXZ,1,0.297
+
+
+! STRENGTH VALUES
+TB,FCLI,1,1,6           ! material strengths
+TBTEMP,0
+TBDATA,1,1020           ![F1t] FIBER TENSION
+TBDATA,2,-620           ![F1c] FIBER COMPRESSION
+TBDATA,3,F2t            ![F2t] MATRIX TENSION (guess value)
+TBDATA,4,-140           ![F2c] MATRIX COMPRESSION
+TBDATA,7,F6             ![F6] FAILURE STRESS, XY SHEAR (guess)
+TBDATA,8,52.7           ![F4] FAILURE STRESS, YZ SHEAR
+
+
+
+!DAMAGE initiation (DMGI)
+TB,DMGI,1,1,4,FCRT          ! Damage detection using failure criteria
+TBTEMP,0
+TBDATA,1,4,4,4,4            ! Hashin criteria for all 4 failure modes
+!DAMAGE EVOLUTION (DMGE)
+TB,DMGE,1,1,8,CDM           ! damage evolution with CDM method
+TBTEMP,0
+TBDATA,1,1E6                ! Fracture toughness, fiber tensile
+TBDATA,2,0.001              ! damping coefficient, fiber tensile
+TBDATA,3,1E6                ! dissipation energy, fiber compressive
+TBDATA,4, 0.001             ! damping coefficient, fiber compressive
+TBDATA,5,Gc                 ! dissipation energy, matrix tensile
+TBDATA,6, 0.005             ! damping coefficient, matrix tensile
+TBDATA,7,1E6                ! dissipation energy, matrix compressive
+TBDATA,8, 0.001             ! damping coefficient, matrix compressive
+
+
+! GEOMETRY AND LOAD
+RECTNG,0,55,0,10            ! Creates rectangle with x=55 m and y=1 m
+ESIZE,55                    ! Element size 100 mm
+
+
+
+AMESH,all                   ! Mesh the area
+FINISH                      ! Exit pre-processor module
+! LOADING AND BC
+/SOLU                       ! Start Solution module
+ANTYPE,STATIC
+OUTRES,ALL,1                ! Store results for each substep
+D,1,all                     ! Define b.c. on node 1, totally fixed
+D,2,ROTX,0.00
+D,2,ROTZ,0.00
+D,2,UY,0.00
+D,2,UX,.9                   ! Define b.c. on node 2, Uy=0.0
+D,3,UX,.9                   ! Define displacement on node 3, Ux=0.1
+D,4,UX,0.00
+D,4,ROTY,0.0
+D,4,ROTZ,0.0                ! Define b.c. on node 4, Ux=0.0
+NSUBST,100,200,100          ! 100 = Number of substeps this load step
+SOLVE                       ! Solve load step
+FINISH                      ! Exit solution module
+
+
+
+
+! RESULTS
+NDATA=22
+*DIM,AA,ARRAY,NDATA,2,1, , ,
+*SET,AA(1,1,1) , 0.35909
+*SET,AA(1,2,1) , 1
+...
+*SET,AA(22,1,1) , 1.47645
+*SET,AA(22,2,1) , 0.733498
+
+
+
+/POST26                   ! Start time-history post-processing
+NSOL,2,3,U,X, UXnode3     ! Load displacements node 3
+RFORCE,3,4,F,X,FXnode4    ! Load reaction force node 4
+RFORCE,4,1,F,X,FXnode1    ! Load reaction force node 1
+LINES,1000
+PRVAR,2,3,4               ! list displacements and reactions
+VGET,UX3,2,0
+VGET,FX4,3,0
+VGET,FX1,4,0
+L=0
+*DO,I,1,NDATA,1
+*DO,J,1,100,1
+SXP=AA(I,1,1)
+EEXP=AA(I,2,1)
+SCS=1.8181*UX3(J,1)
+FN4=FX4(J,1)
+FN1=FX1(J,1)
+FN2=FX1(2,1)
+SCS2=1.8181*UX3(2,1)
+MRG=ABS((SCS-SXP))
+*IF,MRG,LE,0.008145,THEN
+NUM=((FN1+FN4)*(SCS2))
+DEN=2*(FN2)*(SCS)
+EPE=NUM/DEN
+ER1=EPE-EEXP
+ER2=ER1*ER1
+L=L+ER2
+*ENDIF
+*ENDDO
+*ENDDO
+D=(1/NDATA)*SQRT(L)
+FINISH                      ! Exit post-processing module
+
+

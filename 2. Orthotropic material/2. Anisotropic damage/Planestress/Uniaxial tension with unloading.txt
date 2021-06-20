@@ -20,6 +20,8 @@ TBTEMP,T1
 TBDATA,,55000e6,9500e6,0.33,5500e6
 TB,STATE,1,,5
 BLC4, , ,1,1
+
+
 !*  
 LESIZE,ALL, , ,1, ,1, , ,1, 
 MSHAPE,0,2D 
@@ -56,7 +58,7 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-NSUBST,200,1000,200
+NSUBST,50,1000,50
 OUTRES,ERASE
 OUTRES,ALL,ALL 
 OUTRES,SVAR,ALL,,NSVAR 
@@ -73,7 +75,7 @@ FLST,2,1,4,ORDE,1
 FITEM,2,2   
 !*  
 /GO 
-DL,P51X, ,UX,0.2
+DL,P51X, ,UX,0.1
 FLST,2,1,4,ORDE,1   
 FITEM,2,1   
 !*  
@@ -84,30 +86,29 @@ FITEM,2,1
 !*  
 /GO 
 D,P51X, , , , , ,UX,UY, , , ,   
-
 /STATUS,SOLU
 SOLVE 
-
-*VGET, nodelist, NODE, , NLIST, 
-*GET, nodecount, NODE, , COUNT,
-!*VGET,strain,NODE,All,EPTO,X, , ,2
-
-*do, iterator, 1, nodecount, 1   
-
-    esel, none 
-
-    nodenumber=nodelist(%iterator%) 
-
-    *GET,strain,NODE,nodenumber,EPTO,X, , ,2
-	
-    nsel,s,NODE,,nodenumber                   !selects the node with that node-number	
-		
-    esln                                      !selects all elements connected to selected nodes	
-
+FLST,2,1,4,ORDE,1   
+FITEM,2,4   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+DL,P51X, ,UX,0
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,UX,UY, , , ,   
+/STATUS,SOLU
+SOLVE 
     
-*enddo
 
-
-
-
-FINISH

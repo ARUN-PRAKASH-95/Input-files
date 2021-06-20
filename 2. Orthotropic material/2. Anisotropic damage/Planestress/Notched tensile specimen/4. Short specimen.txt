@@ -40,16 +40,16 @@ R,2,0.001,0.001,0.001, , , ,
 !*  
 !* 
  
-MPTEMP,,,,,,,,  
-MPTEMP,1,0  
-MPDATA,EX,1,,55000e6
-MPDATA,PRXY,1,,0.3  
+!MPTEMP,,,,,,,,  
+!MPTEMP,1,0  
+!MPDATA,EX,1,,55000e6
+!MPDATA,PRXY,1,,0.3  
 
-!T1 = 1
-!TB,USER,1,1,4,4  
-!TBTEMP,T1
-!TBDATA,,55000e6,9500e6,0.33,5500e6
-!TB,STATE,1,,5
+T1 = 1
+TB,USER,1,1,4,4  
+TBTEMP,T1
+TBDATA,,55000e6,9500e6,0.33,5500e6
+TB,STATE,1,,5
 
 
 /VIEW,1,,,-1
@@ -63,56 +63,41 @@ MPDATA,PRXY,1,,0.3
 /REP,FAST  
 
 
-K,1,0.0005,,,   
-K,2,0.0005,0.0175,, 
-K,3,0.0005,0.0225,, 
-K,4,,0.0225,,
-K,5,,0.0625,,   
-K,6,0.0005,0.0625,,
-K,7,0.0075,0.0625,, 
-K,8,0.03,0.0625,,   
-K,9,0.03,0.0225,, 
-K,10,0.03,,, 
-K,11,0.0075,0.0175,, 
-K,12,0.0075,0.0225,, 
-K,13,0.01625,0.0125,,   
- 
-FLST,2,4,3  
+K,1,,,, 
+K,2,,0.010,,
+K,3,,0.013,,  
+K,4,0.003,0.013,,  
+K,5,0.008,0.013,,   
+K,6,0.03,0.013,,   
+K,7,0.03,,, 
+K,8,0.008,,,
+
+
+
+!*  
+LARC,2,4,3,0.003,   
+LSTR,       2,       1  
+LSTR,       1,       8  
+LSTR,       8,       5  
+LSTR,       5,       4  
+LSTR,       8,       7  
+LSTR,       7,       6  
+LSTR,       6,       5  
+FLST,2,5,4  
+FITEM,2,3   
 FITEM,2,4   
-FITEM,2,3   
-FITEM,2,6   
 FITEM,2,5   
-A,P51X  
-FLST,2,4,3  
-FITEM,2,3   
-FITEM,2,12  
-FITEM,2,7   
-FITEM,2,6   
-A,P51X  
-FLST,2,4,3  
-FITEM,2,3   
-FITEM,2,2   
-FITEM,2,11  
-FITEM,2,12  
-A,P51X  
-FLST,2,4,3  
-FITEM,2,12  
-FITEM,2,9   
-FITEM,2,8   
-FITEM,2,7   
-A,P51X  
-FLST,2,6,3  
 FITEM,2,1   
 FITEM,2,2   
-FITEM,2,11  
-FITEM,2,12  
-FITEM,2,9   
-FITEM,2,10  
-A,P51X  
+AL,P51X 
+FLST,2,4,4  
+FITEM,2,6   
+FITEM,2,7   
+FITEM,2,8   
+FITEM,2,4   
+AL,P51X 
 
 
-CYL4,0.01625,0.0125,0.0065 
-ASBA,       5,       6  
 NUMSTR,NODE,50, 
 NUMSTR,ELEM,1,  
 NUMSTR,KP,1,
@@ -120,101 +105,36 @@ NUMSTR,LINE,1,
 NUMSTR,AREA,1,  
 NUMSTR,VOLU,1,  
 
-FLST,5,3,4,ORDE,3   
+!!!!!!!!!!!!!!  Mesh
+FLST,5,1,4,ORDE,1   
+FITEM,5,1   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,1   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,20, , , , ,1 
+!*  
+FLST,5,2,4,ORDE,2   
 FITEM,5,2   
-FITEM,5,4   
-FITEM,5,6   
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,30, , , , ,1 
-!*  
-FLST,5,2,4,ORDE,2   
-FITEM,5,1   
-FITEM,5,3   
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,2, , , , ,1  
-!*  
-FLST,5,3,4,ORDE,3   
 FITEM,5,5   
-FITEM,5,7   
-FITEM,5,9   
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,5, , , , ,1  
+LESIZE,_Y1, , ,20, , , , ,1 
 !*  
 FLST,5,2,4,ORDE,2   
-FITEM,5,8   
-FITEM,5,10  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,3, , , , ,1  
-!*  
-MSHAPE,0,2D 
-MSHKEY,0
-!*  
-FLST,5,3,5,ORDE,2   
-FITEM,5,1   
-FITEM,5,-3  
-CM,_Y,AREA  
-ASEL, , , ,P51X 
-CM,_Y1,AREA 
-CHKMSH,'AREA'   
-CMSEL,S,_Y  
-!*  
-AMESH,_Y1   
-!*  
-CMDELE,_Y   
-CMDELE,_Y1  
-CMDELE,_Y2  
-!*  
-APLOT   
-FLST,5,1,4,ORDE,1   
-FITEM,5,12  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,15, , , , ,1 
-!*  
-FLST,5,2,4,ORDE,2   
-FITEM,5,11  
-FITEM,5,13  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,8, , , , ,1  
-!*  
-CM,_Y,AREA  
-ASEL, , , ,       4 
-CM,_Y1,AREA 
-CHKMSH,'AREA'   
-CMSEL,S,_Y  
-!*  
-AMESH,_Y1   
-!*  
-CMDELE,_Y   
-CMDELE,_Y1  
-CMDELE,_Y2  
-!*  
-APLOT   
-FLST,5,1,4,ORDE,1   
-FITEM,5,15  
+FITEM,5,3   
+FITEM,5,-4  
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
@@ -222,17 +142,47 @@ CMSEL,,_Y
 !*  
 LESIZE,_Y1, , ,10, , , , ,1 
 !*  
-FLST,5,1,4,ORDE,1   
-FITEM,5,16  
+FLST,2,2,4,ORDE,2   
+FITEM,2,3   
+FITEM,2,-4  
+LCCAT,P51X  
+MSHAPE,0,2D 
+MSHKEY,1
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       1 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+APLOT   
+FLST,5,2,4,ORDE,2   
+FITEM,5,6   
+FITEM,5,8   
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,15, , , , ,1 
+LESIZE,_Y1, , ,30, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,7   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 CM,_Y,AREA  
-ASEL, , , ,       7 
+ASEL, , , ,       2 
 CM,_Y1,AREA 
 CHKMSH,'AREA'   
 CMSEL,S,_Y  
@@ -244,10 +194,14 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
-NUMMRG,NODE
+
+
+
+
+NUMMRG,ALL
 
 !*  
-N,1,0.01625,0.0125,,,,, 
+N,1,0.04,0.0065,,,,, 
 TYPE,   2   
 MAT,       1
 REAL,       2   
@@ -257,9 +211,10 @@ TSHAP,LINE
 !*  
 E,       1 
 EPLOT 
-FLST,5,24,1,ORDE,2  
-FITEM,5,573 
-FITEM,5,-596
+FLST,5,11,1,ORDE,3  
+FITEM,5,491 
+FITEM,5,521 
+FITEM,5,-530
 CM,_NODECM,NODE 
 *SET,_z1,       1   
 NSEL,S, , ,P51X 
@@ -268,13 +223,12 @@ CM,_CERGCM,NODE
 CMSEL,S,_NODECM 
 !*  
 CMSEL,S,_CERGCM 
-CERIG,1,ALL,UXYZ, , , , 
+CERIG,1,ALL,ALL, , , ,  
 CMSEL,S,_NODECM 
-!* 
+!*  
 
 
-
-
+!*  
 esel,all,ELEM
 *get,elemCount,ELEM,,COUNT
 *vget,elemList,ELEM,,ELIST
@@ -285,30 +239,31 @@ esel,all,ELEM
 	esel,ALL,ELEM,,elemList(%iterator%)
 	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
 	inistate,set,dtype,svar
-	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/4%
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/8%
 *enddo 
 FINISH
 
 /SOL
 !*  
 ANTYPE,0
-NSUBST,100,1000,100 
+NSUBST,100,500,100 
 OUTRES,ERASE
 OUTRES,ALL,ALL
 OUTRES,SVAR,ALL,,NSVAR   
 TIME,1
 ALLSEL,ALL  
 
+FLST,2,2,4,ORDE,2   
+FITEM,2,3   
+FITEM,2,6   
+!*  
+/GO 
+DL,P51X, ,UY,   
 FLST,2,1,4,ORDE,1   
-FITEM,2,4   
+FITEM,2,2   
 !*  
 /GO 
 DL,P51X, ,UX,   
-FLST,2,1,1,ORDE,1   
-FITEM,2,83  
-!*  
-/GO 
-D,P51X, , , , , ,UX,UY, , , ,   
 FLST,2,1,1,ORDE,1   
 FITEM,2,1   
 !*  
@@ -316,8 +271,12 @@ FITEM,2,1
 D,P51X, , , , , ,UY, , , , ,
 FLST,2,1,1,ORDE,1   
 FITEM,2,1   
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
 !*  
 /GO 
-D,P51X, ,0.04, , , ,UX, , , , ,
+D,P51X, ,0.0005, , , ,UX, , , , ,
+
+
 /STATUS,SOLU
-SOLVE  
+SOLVE 

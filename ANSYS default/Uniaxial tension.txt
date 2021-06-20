@@ -1,0 +1,137 @@
+/CLEAR,START
+/COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       13:24:21
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+/PREP7  
+
+F2t = 80.0 ! MPa
+F6 = 48.0 ! MPa
+Gc = 25.0 ! kJ/m^2
+
+
+ET,1,SHELL181      ! Element type
+
+! LAMINATE STACKING SEQUENCE
+SECTYPE,1,SHELL,,#1 ! SECTYPE, SEID, TYPE, SUBTYPE, NAME
+SECDATA,0.288,1,0 ! thickness, material, angle
+SECDATA,1.152,1,90
+SECDATA,0.288,1,0
+
+
+! ORTHOTROPIC MATERIAL PROPERTIES
+MP,EX,1,44.7E3
+MP,EY,1,12.7E3
+MP,EZ,1,12.7E3
+MP,GXY,1,5.8E3
+MP,GYZ,1,4.5E3
+MP,GXZ,1,5.8E3
+MP,PRXY,1,0.297
+MP,PRYZ,1,0.4111
+MP,PRXZ,1,0.297
+
+
+! STRENGTH VALUES
+TB,FCLI,1,1,6           ! material strengths
+TBTEMP,0
+TBDATA,1,1020           ![F1t] FIBER TENSION
+TBDATA,2,-620           ![F1c] FIBER COMPRESSION
+TBDATA,3,F2t            ![F2t] MATRIX TENSION (guess value)
+TBDATA,4,-140           ![F2c] MATRIX COMPRESSION
+TBDATA,7,F6             ![F6] FAILURE STRESS, XY SHEAR (guess)
+TBDATA,8,52.7           ![F4] FAILURE STRESS, YZ SHEAR
+
+
+
+!DAMAGE initiation (DMGI)
+TB,DMGI,1,1,4,FCRT          ! Damage detection using failure criteria
+TBTEMP,0
+TBDATA,1,4,4,4,4            ! Hashin criteria for all 4 failure modes
+!DAMAGE EVOLUTION (DMGE)
+TB,DMGE,1,1,8,CDM           ! damage evolution with CDM method
+TBTEMP,0
+TBDATA,1,1E6                ! Fracture toughness, fiber tensile
+TBDATA,2,0.001              ! damping coefficient, fiber tensile
+TBDATA,3,1E6                ! dissipation energy, fiber compressive
+TBDATA,4, 0.001             ! damping coefficient, fiber compressive
+TBDATA,5,Gc                 ! dissipation energy, matrix tensile
+TBDATA,6, 0.005             ! damping coefficient, matrix tensile
+TBDATA,7,1E6                ! dissipation energy, matrix compressive
+TBDATA,8, 0.001             ! damping coefficient, matrix compressive
+
+
+
+
+
+
+BLC4, , ,0.01,0.01
+
+
+
+
+!*  
+LESIZE,ALL, , ,1, ,1, , ,1, 
+MSHAPE,0,2D 
+MSHKEY,0
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       1 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+FINISH
+
+
+/SOL
+!*  
+ANTYPE,0
+NSUBST,100,1000,100
+OUTRES,ERASE
+OUTRES,ALL,ALL 
+OUTRES,SVAR,ALL,,NSVAR 
+TIME,1
+!ARCLEN,1,25,1e-3
+!AUTOTS,-1.0 
+!STABILIZE,CONSTANT,DAMPING,1e-4,NO  
+FLST,2,1,4,ORDE,1   
+FITEM,2,4   
+
+!!!!!!!!!!!!!!!!!!!!!!!  BCs
+FLST,2,1,4,ORDE,1   
+FITEM,2,4   
+!*  
+/GO 
+DL,P51X, ,UX,   
+FLST,2,1,4,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+DL,P51X, ,UX,3  
+FLST,2,1,4,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+DL,P51X, ,UY,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,1   
+!*  
+/GO 
+D,P51X, , , , , ,ALL, , , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,2   
+!*  
+/GO 
+D,P51X, , , , , ,ROTX,ROTY, , , ,   
+FLST,2,1,1,ORDE,1   
+FITEM,2,4   
+!*  
+/GO 
+D,P51X, , , , , ,ROTY,ROTZ, , , ,   
+/STATUS,SOLU
+SOLVE

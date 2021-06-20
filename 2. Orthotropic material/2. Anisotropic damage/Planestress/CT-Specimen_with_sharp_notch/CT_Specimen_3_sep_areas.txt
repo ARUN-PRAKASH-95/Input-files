@@ -1,4 +1,4 @@
-!!!!!!!!!!!!!!!!!!!  CT SPECIMEN   
+!!!!!!!!!!!!!!!!!!!!  CT SPECIMEN   
 /CLEAR,START
 /COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       11:58:57
 /input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
@@ -60,43 +60,28 @@ TB,STATE,1,,5
 /ANG,1,-30,ZS,1 
 /REP,FAST  
 
-
-
 K,1,0.0005,,,   
 K,2,0.0005,0.0175,, 
 K,3,0.0005,0.0225,, 
-K,4,,0.0225,,
-K,5,,0.0625,,   
-K,6,0.0075,0.0625,, 
-K,7,0.03,0.0625,,   
-K,8,0.03,,, 
-K,9,0.0075,0.0175,, 
-K,10,0.01625,0.0125,,   
+K,4,,0.0240,,
+K,5,,0.0290,,
+K,6,,0.0625,,   
+K,7,0.009,0.0625,, 
+K,8,0.03,0.0625,,   
+K,9,0.03,,, 
+K,10,0.009,0.0175,, 
+K,11,0.01625,0.0125,,   
 
-FLST,2,6,3  
-FITEM,2,9   
+
+FLST,2,7,3  
 FITEM,2,2   
 FITEM,2,3   
 FITEM,2,4   
 FITEM,2,5   
 FITEM,2,6   
-A,P51X  
-FLST,2,6,3  
-FITEM,2,2   
-FITEM,2,1   
-FITEM,2,8   
 FITEM,2,7   
-FITEM,2,6   
-FITEM,2,9   
+FITEM,2,10  
 A,P51X  
-
-CYL4,0.01625,0.0125,0.0065  
-ASBA,       2,       3  
+ 
 
 
-NUMSTR,NODE,50, 
-NUMSTR,ELEM,1,  
-NUMSTR,KP,1,
-NUMSTR,LINE,1,  
-NUMSTR,AREA,1,  
-NUMSTR,VOLU,1,  
