@@ -76,3 +76,29 @@ FITEM,2,2
 DL,P51X, ,UX,0.05
 /STATUS,SOLU
 SOLVE   
+
+
+
+*VGET, nodelist, NODE, , NLIST, 
+*GET, nodecount, NODE, , COUNT,
+!*VGET,strain,NODE,All,EPTO,X, , ,2
+
+*do, iterator, 1, nodecount, 1   
+
+    esel, none 
+
+    nodenumber=nodelist(%iterator%) 
+
+    *GET,strain,NODE,nodenumber,EPTO,X, , ,2
+	
+    nsel,s,NODE,,nodenumber                   !selects the node with that node-number	
+		
+    esln                                      !selects all elements connected to selected nodes	
+
+    
+*enddo
+
+
+
+
+FINISH

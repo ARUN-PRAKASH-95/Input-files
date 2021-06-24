@@ -1,6 +1,7 @@
 /CLEAR,START
 /COM,ANSYS RELEASE Release 19.1      BUILD 19.1      UP20180418       13:24:21
-/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'  
+/input,start,ans,'C:\Program Files\ANSYS Inc\v191\ANSYS\apdl\'
+/OUT,User,out   
 /PREP7  
 !*  
 ET,1,PLANE182
@@ -8,6 +9,7 @@ ERESX,NO
 KEYOPT,1,1,0
 KEYOPT,1,3,0
 KEYOPT,1,6,0
+
 !*  
 !*  
 !R,1,0.1,
@@ -56,7 +58,7 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-NSUBST,200,1000,200
+NSUBST,100,1000,100
 OUTRES,ERASE
 OUTRES,ALL,ALL 
 OUTRES,SVAR,ALL,,NSVAR 
@@ -88,26 +90,3 @@ D,P51X, , , , , ,UX,UY, , , ,
 /STATUS,SOLU
 SOLVE 
 
-*VGET, nodelist, NODE, , NLIST, 
-*GET, nodecount, NODE, , COUNT,
-!*VGET,strain,NODE,All,EPTO,X, , ,2
-
-*do, iterator, 1, nodecount, 1   
-
-    esel, none 
-
-    nodenumber=nodelist(%iterator%) 
-
-    *GET,strain,NODE,nodenumber,EPTO,X, , ,2
-	
-    nsel,s,NODE,,nodenumber                   !selects the node with that node-number	
-		
-    esln                                      !selects all elements connected to selected nodes	
-
-    
-*enddo
-
-
-
-
-FINISH
