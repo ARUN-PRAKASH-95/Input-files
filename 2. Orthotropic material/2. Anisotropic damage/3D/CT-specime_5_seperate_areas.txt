@@ -292,7 +292,7 @@ esel,all,ELEM
 	esel,ALL,ELEM,,elemList(%iterator%)
 	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
 	inistate,set,dtype,svar
-	inistate,defi,elemList(%iterator%),ALL,,,%elemvol%
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/8%
 *enddo  
 
 FINISH 

@@ -6,7 +6,7 @@ FINISH
 
 L = 1
 
-STRETCH = 0.2
+STRETCH = 0.3
 
 
 /PREP7

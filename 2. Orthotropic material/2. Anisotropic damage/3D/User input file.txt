@@ -28,7 +28,7 @@ ET,1,SOLID185
 !* 
 !*  
 !*  
-KEYOPT,1,2,1
+KEYOPT,1,2,0
 KEYOPT,1,3,0
 KEYOPT,1,6,0
 KEYOPT,1,8,0
@@ -168,7 +168,7 @@ FITEM,2,7
 FITEM,2,-8  
 !*  
 /GO 
-D,P51X, ,2, , , ,UX, , , , ,
+D,P51X, ,1, , , ,UX, , , , ,
 FINISH  
 /POST1  
 FINISH  

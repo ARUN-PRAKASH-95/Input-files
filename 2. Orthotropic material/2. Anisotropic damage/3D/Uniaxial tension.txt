@@ -6,7 +6,7 @@ FINISH
 
 L = 1
 
-STRETCH = 0.2
+STRETCH =0.1
 
 
 /PREP7
@@ -15,7 +15,7 @@ STRETCH = 0.2
 ERESX,NO
 ET,1,SOLID185
 !*  
-KEYOPT,1,2,1
+KEYOPT,1,2,0
 KEYOPT,1,3,0
 KEYOPT,1,6,0
 KEYOPT,1,8,0
@@ -37,7 +37,18 @@ TYPE,1
 BLC4,0,0,L,L,L
 ESIZE,,L
 VMESH,1
+esel,all,ELEM
+*get,elemCount,ELEM,,COUNT
+*vget,elemList,ELEM,,ELIST
 
+
+*do,iterator,1,elemCount,1
+	esel,none
+	esel,ALL,ELEM,,elemList(%iterator%)
+	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
+	inistate,set,dtype,svar
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/8%
+*enddo 
 NSEL,S,LOC,X,0
 D,ALL,UX
 NSEL,ALL
