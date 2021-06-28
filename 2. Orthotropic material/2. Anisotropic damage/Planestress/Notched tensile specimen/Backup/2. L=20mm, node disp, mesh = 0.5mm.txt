@@ -19,7 +19,8 @@ KEYW,PR_MULTI,0
 /COM,   
 /COM,Preferences for GUI filtering have been set to display:
 /COM,  Structural   
-!*  
+!*
+/OUT,User,out  
 /PREP7 
 ERESX,NO 
 !*  
@@ -28,6 +29,7 @@ ET,1,PLANE182
 KEYOPT,1,1,0
 KEYOPT,1,3,0
 KEYOPT,1,6,0
+
 !*  
 !*  
 !R,1,0.0038, 
@@ -49,7 +51,7 @@ T1 = 1
 TB,USER,1,1,4,4  
 TBTEMP,T1
 TBDATA,,55000e6,9500e6,0.33,5500e6
-TB,STATE,1,,5
+TB,STATE,1,,6
 
 
 /VIEW,1,,,-1
@@ -63,77 +65,76 @@ TB,STATE,1,,5
 /REP,FAST  
 
 
-K,1,0.0005,,,   
-K,2,0.0005,0.0175,, 
-K,3,0.0005,0.0225,, 
-K,4,,0.0225,,
-K,5,,0.0625,,   
-K,6,0.0005,0.0625,,
-K,7,0.0075,0.0625,, 
-K,8,0.03,0.0625,,   
-K,9,0.03,0.0225,, 
-K,10,0.03,,, 
-K,11,0.0075,0.0175,, 
-K,12,0.0075,0.0225,, 
-K,13,0.01625,0.0125,,   
- 
-FLST,2,4,3  
+K,1,,,, 
+K,2,,0.010,,
+K,3,,0.013,,  
+K,4,0.003,0.013,,  
+K,5,0.008,0.013,,   
+K,6,0.02,0.013,,   
+K,7,0.02,,, 
+K,8,0.008,,,
+
+!*  
+LARC,2,4,3,0.003,   
+LSTR,       4,       5  
+LSTR,       5,       6  
+LSTR,       6,       7  
+LSTR,       7,       8  
+LSTR,       8,       1  
+LSTR,       1,       2  
+/USER,  1   
+/REPLO  
+LSTR,       8,       5  
+!!!!!!!!!!Kp
+KL,       1,  0.1297679861763212
+LANG,       6,       9,90, ,
+
+
+!!!!!!!!!!!!! Delete arc
+LDELE,       1  
+
+!!!!!!!!!! Two arcs 
+!*  
+LARC,2,9,3,0.003,   
+!*  
+LARC,9,4,3,0.003,  
+LPLOT
+
+FLST,2,4,4  
+FITEM,2,9   
+FITEM,2,1   
+FITEM,2,7   
+FITEM,2,10  
+AL,P51X 
+FLST,2,5,4  
+FITEM,2,6   
+FITEM,2,8   
+FITEM,2,2   
+FITEM,2,11  
+FITEM,2,10  
+AL,P51X 
+FLST,2,4,4  
+FITEM,2,5   
 FITEM,2,4   
 FITEM,2,3   
-FITEM,2,6   
-FITEM,2,5   
-A,P51X  
-FLST,2,4,3  
-FITEM,2,3   
-FITEM,2,12  
-FITEM,2,7   
-FITEM,2,6   
-A,P51X  
-FLST,2,4,3  
-FITEM,2,3   
-FITEM,2,2   
-FITEM,2,11  
-FITEM,2,12  
-A,P51X  
-FLST,2,4,3  
-FITEM,2,12  
-FITEM,2,9   
 FITEM,2,8   
-FITEM,2,7   
-A,P51X  
-FLST,2,6,3  
-FITEM,2,1   
-FITEM,2,2   
-FITEM,2,11  
-FITEM,2,12  
-FITEM,2,9   
-FITEM,2,10  
-A,P51X  
+AL,P51X 
 
 
-CYL4,0.01625,0.0125,0.0065 
-ASBA,       5,       6  
-NUMSTR,NODE,50, 
-NUMSTR,ELEM,1,  
-NUMSTR,KP,1,
-NUMSTR,LINE,1,  
-NUMSTR,AREA,1,  
-NUMSTR,VOLU,1,  
 
-FLST,5,3,4,ORDE,3   
-FITEM,5,2   
-FITEM,5,4   
-FITEM,5,6   
+!!!!!!!!!!!!!!!!!!!!!!  Meshing 
+FLST,5,2,4,ORDE,2   
+FITEM,5,7   
+FITEM,5,10  
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,30, , , , ,1 
-!*  
+LESIZE,_Y1, , ,20, , , , ,1 
 FLST,5,2,4,ORDE,2   
 FITEM,5,1   
-FITEM,5,3   
+FITEM,5,9   
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
@@ -141,10 +142,51 @@ CMSEL,,_Y
 !*  
 LESIZE,_Y1, , ,1, , , , ,1  
 !*  
-FLST,5,3,4,ORDE,3   
-FITEM,5,5   
-FITEM,5,7   
-FITEM,5,9   
+MSHAPE,0,2D 
+MSHKEY,0
+!*  
+CM,_Y,AREA  
+ASEL, , , ,       1 
+CM,_Y1,AREA 
+CHKMSH,'AREA'   
+CMSEL,S,_Y  
+!*  
+AMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+!!!!!!!!!!!!!!!  Meshing 2  
+FLST,5,1,4,ORDE,1   
+FITEM,5,11  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,18, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,6   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1  
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,8   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,15, , , , ,1  
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,2   
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
@@ -152,24 +194,14 @@ CMSEL,,_Y
 !*  
 LESIZE,_Y1, , ,5, , , , ,1  
 !*  
-FLST,5,2,4,ORDE,2   
-FITEM,5,8   
-FITEM,5,10  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
+FLST,2,2,4,ORDE,2   
+FITEM,2,6   
+FITEM,2,8   
+LCCAT,P51X  
+MSHKEY,1
 !*  
-LESIZE,_Y1, , ,3, , , , ,1  
-!*  
-MSHAPE,0,2D 
-MSHKEY,0
-!*  
-FLST,5,3,5,ORDE,2   
-FITEM,5,1   
-FITEM,5,-3  
 CM,_Y,AREA  
-ASEL, , , ,P51X 
+ASEL, , , ,       2 
 CM,_Y1,AREA 
 CHKMSH,'AREA'   
 CMSEL,S,_Y  
@@ -180,59 +212,28 @@ CMDELE,_Y
 CMDELE,_Y1  
 CMDELE,_Y2  
 !*  
-APLOT   
-FLST,5,1,4,ORDE,1   
-FITEM,5,12  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,15, , , , ,1 
-!*  
+!!!!!!!!!!  Meshing 3   
 FLST,5,2,4,ORDE,2   
-FITEM,5,11  
-FITEM,5,13  
+FITEM,5,3   
+FITEM,5,5   
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,8, , , , ,1  
-!*  
-CM,_Y,AREA  
-ASEL, , , ,       4 
-CM,_Y1,AREA 
-CHKMSH,'AREA'   
-CMSEL,S,_Y  
-!*  
-AMESH,_Y1   
-!*  
-CMDELE,_Y   
-CMDELE,_Y1  
-CMDELE,_Y2  
-!*  
-APLOT   
-FLST,5,1,4,ORDE,1   
-FITEM,5,15  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,10, , , , ,1 
+LESIZE,_Y1, , ,20, , , , ,1 
 !*  
 FLST,5,1,4,ORDE,1   
-FITEM,5,16  
+FITEM,5,4   
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,15, , , , ,1 
+LESIZE,_Y1, , ,15, , , , ,1  
 !*  
 CM,_Y,AREA  
-ASEL, , , ,       7 
+ASEL, , , ,       3 
 CM,_Y1,AREA 
 CHKMSH,'AREA'   
 CMSEL,S,_Y  
@@ -244,10 +245,13 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
-NUMMRG,ALL
+
+
+NUMMRG,NODE
 
 !*  
-N,1,0.01625,0.0125,,,,, 
+!*  
+N, ,0.03,0.0065,,,,,
 TYPE,   2   
 MAT,       1
 REAL,       2   
@@ -255,26 +259,28 @@ ESYS,       0
 SECNUM, 
 TSHAP,LINE  
 !*  
-E,       1 
-EPLOT 
-FLST,5,24,1,ORDE,2  
-FITEM,5,542 
-FITEM,5,-565
+E,     888  
+EPLOT   
+FLST,5,16,1,ORDE,4  
+FITEM,5,568 
+FITEM,5,588 
+FITEM,5,608 
+FITEM,5,-621
 CM,_NODECM,NODE 
-*SET,_z1,       1   
+*SET,_z1,     888   
 NSEL,S, , ,P51X 
 NSEL,A, , ,_Z1  
 CM,_CERGCM,NODE 
 CMSEL,S,_NODECM 
 !*  
 CMSEL,S,_CERGCM 
-CERIG,1,ALL,ALL, , , ,  
+CERIG,888,ALL,ALL, , , ,
 CMSEL,S,_NODECM 
 !*  
 
 
 
-
+!*  
 esel,all,ELEM
 *get,elemCount,ELEM,,COUNT
 *vget,elemList,ELEM,,ELIST
@@ -292,39 +298,43 @@ FINISH
 /SOL
 !*  
 ANTYPE,0
-NSUBST,500,100000,500 
+NSUBST,500,1000000,500 
 OUTRES,ERASE
 OUTRES,ALL,ALL
 OUTRES,SVAR,ALL,,NSVAR 
-EQSLV,PCG,1E-8  
+!EQSLV,PCG,1E-4   
 NLGEOM,0
 LNSRCH,1
 PRED,ON,,ON 
 STAOPT,VT   
 RATE,1  
-!STABILIZE,CONSTANT,DAMPING,1e-6,NO   
+!STABILIZE,CONSTANT,DAMPING,1e-4,NO 
 TIME,1
 ALLSEL,ALL  
+FLST,2,3,4,ORDE,3   
+FITEM,2,5   
+FITEM,2,-6  
+FITEM,2,9   
+!*  
+/GO 
+DL,P51X, ,UY,   
 FLST,2,1,4,ORDE,1   
-FITEM,2,4   
+FITEM,2,7   
 !*  
 /GO 
-DL,P51X, ,UX,   
+DL,P51X, ,UX, 
 FLST,2,1,1,ORDE,1   
-FITEM,2,82  
-!*  
-/GO 
-D,P51X, , , , , ,ALL, , , , ,   
-FLST,2,1,1,ORDE,1   
-FITEM,2,1   
+FITEM,2,888 
 !*  
 /GO 
 D,P51X, , , , , ,UY, , , , ,
 FLST,2,1,1,ORDE,1   
-FITEM,2,1   
+FITEM,2,888 
 !*  
 /GO 
-D,P51X, ,0.0012, , , ,UX, , , , ,
+D,P51X, ,0.001, , , ,UX, , , , ,
+
+
 
 /STATUS,SOLU
-SOLVE  
+SOLVE
