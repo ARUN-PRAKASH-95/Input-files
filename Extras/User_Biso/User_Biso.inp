@@ -9,7 +9,7 @@ FINISH
 /RGB,INDEX,0,0,0,15  
 
 /TITLE,TB,BISO vs. TB,USER
-/OUT,User_Biso,out
+/OUT,User,out
 
 ELE_TYPE_1 = 185
 ELE_TYPE_2 = 185

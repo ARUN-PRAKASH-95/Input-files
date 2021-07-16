@@ -27,12 +27,12 @@ ERESX,NO
 ET,1,PLANE182   
 !*  
 KEYOPT,1,1,0
-KEYOPT,1,3,0
+KEYOPT,1,3,3
 KEYOPT,1,6,0
 
 !*  
 !*  
-!R,1,0.0038, 
+R,1,0.003, 
 !*  
 !* 
 ET,2,MASS21 
@@ -41,12 +41,15 @@ R,2,0.001,0.001,0.001, , , ,
 !*  
 !*  
 !* 
- 
+!MPTEMP,,,,,,,,  
+!MPTEMP,1,0  
+!MPDATA,EX,1,,100e9  
+!MPDATA,PRXY,1,,0.33  
 
 T1 = 1
-TB,USER,1,1,4,4  
+TB,USER,1,1,7
 TBTEMP,T1
-TBDATA,,59000e6,9500e6,0.33,5500e6
+TBDATA,1,55000e6,9500e6,0.33,5500e6,2500e6,-2000e6
 TB,STATE,1,,6
 
 
@@ -70,13 +73,14 @@ K,7,0.02,,,
 K,8,0.008,,,
 K,9,0.001,,,
 K,10,0.001,0.013,,
-K,11,0.0012,,,
-K,12,0.0012,0.013,,
+K,11,0.0015,,,
+K,12,0.0015,0.013,,
 !*  
+
+
 
 !*  
 LARC,2,4,3,0.003,   
-!!!!!!!! Lines  
 LSTR,       1,       2  
 LSTR,       4,       5  
 LSTR,       5,       6  
@@ -85,73 +89,80 @@ LSTR,       7,       8
 LSTR,       8,      11  
 LSTR,      11,       9  
 LSTR,       9,       1  
-LSTR,       9,      10  
-LSTR,      12,      11  
 LSTR,       8,       5  
-LPLOT
-!!!!!!!!!!!!!   Keypoints   
-KL,       1,  0.2617735211755883
-KL,       1,  0.2159421574659603
+LSTR,      11,      12  
+LSTR,       9,      10  
 
 
-!!!!!!!!  Delete lines  
+
+!!!!!!!!!!  Keypoints   
+KL,       1,  0.3333644244142673
+KL,       1,  0.2161404537529210
+
+
+!!!!!!!!! Delete lines  
 FLST,2,3,4,ORDE,3   
 FITEM,2,1   
-FITEM,2,10  
-FITEM,2,-11 
+FITEM,2,11  
+FITEM,2,-12 
 LDELE,P51X  
+
+!!!!!!!  3 arcs 
 KPLOT   
-!!!!!!!!!  Two arcs 
 !*  
 LARC,2,14,3,0.003,  
 !*  
 LARC,14,13,3,0.003, 
 !*  
 LARC,13,4,3,0.003,  
-!!!!!!!  2 lines
-LSTR,       9,      14  
-LSTR,      11,      13  
+
+!!!! Lines  
+LPLOT   
+KPLOT   
+LSTR,      13,      11  
+LSTR,      14,       9  
 LPLOT   
 
-!!!!!! Areas
+
+!!!!!!!!!!!   Areas 
 FLST,2,4,4  
 FITEM,2,2   
-FITEM,2,13  
+FITEM,2,14  
 FITEM,2,1   
 FITEM,2,9   
 AL,P51X 
 FLST,2,4,4  
-FITEM,2,10  
 FITEM,2,8   
 FITEM,2,13  
 FITEM,2,14  
+FITEM,2,11  
 AL,P51X 
 FLST,2,5,4  
+FITEM,2,13  
 FITEM,2,7   
-FITEM,2,14  
-FITEM,2,11  
+FITEM,2,10  
 FITEM,2,3   
 FITEM,2,12  
 AL,P51X 
 FLST,2,4,4  
-FITEM,2,12  
+FITEM,2,6   
+FITEM,2,10  
 FITEM,2,4   
 FITEM,2,5   
-FITEM,2,6   
 AL,P51X 
 
 
-!!!!!!!!!!  Meshing 
-!!!!!!!!!!  Mesh 1  
+!!!!!!!!!  Meshing  
+!!!!!!!!!  Mesh 1   
 FLST,5,2,4,ORDE,2   
 FITEM,5,2   
-FITEM,5,13  
+FITEM,5,14  
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,40, , , , ,1 
+LESIZE,_Y1, , ,20, , , , ,1 
 !*  
 FLST,5,2,4,ORDE,2   
 FITEM,5,1   
@@ -161,7 +172,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,4, , , , ,1  
+LESIZE,_Y1, , ,2, , , , ,1  
 !*  
 MSHAPE,0,2D 
 MSHKEY,1
@@ -183,7 +194,16 @@ CMDELE,_Y2
 !!!!!!!!!!  Mesh 2  
 APLOT   
 FLST,5,1,4,ORDE,1   
-FITEM,5,11  
+FITEM,5,13  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,20, , , , ,1 
+!*  
+FLST,5,1,4,ORDE,1   
+FITEM,5,12  
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
@@ -201,13 +221,13 @@ CMSEL,,_Y
 LESIZE,_Y1, , ,7, , , , ,1  
 !*  
 FLST,5,1,4,ORDE,1   
-FITEM,5,12  
+FITEM,5,10  
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,10, , , , ,1 
+LESIZE,_Y1, , ,7, , , , ,1  
 !*  
 FLST,5,1,4,ORDE,1   
 FITEM,5,3   
@@ -218,25 +238,9 @@ CMSEL,,_Y
 !*  
 LESIZE,_Y1, , ,5, , , , ,1  
 !*  
-FLST,5,1,4,ORDE,1   
-FITEM,5,14  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-FLST,5,1,4,ORDE,1   
-FITEM,5,14  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,20, , , , ,1 
-!*  
 FLST,2,2,4,ORDE,2   
 FITEM,2,7   
-FITEM,2,12  
+FITEM,2,10  
 LCCAT,P51X  
 CM,_Y,AREA  
 ASEL, , , ,       3 
@@ -251,11 +255,11 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 
+
 !!!!!!!!!!  Mesh 3  
 APLOT   
-FLST,5,2,4,ORDE,2   
+FLST,5,1,4,ORDE,1   
 FITEM,5,8   
-FITEM,5,10  
 CM,_Y,LINE  
 LSEL, , , ,P51X 
 CM,_Y1,LINE 
@@ -263,7 +267,14 @@ CMSEL,,_Y
 !*  
 LESIZE,_Y1, , ,1, , , , ,1  
 !*  
-MSHKEY,0
+FLST,5,1,4,ORDE,1   
+FITEM,5,11  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,1, , , , ,1  
 !*  
 CM,_Y,AREA  
 ASEL, , , ,       2 
@@ -277,8 +288,10 @@ CMDELE,_Y
 CMDELE,_Y1  
 CMDELE,_Y2  
 !*  
+EPLOT   
 
-!!!!!!!!!   Mesh 4  
+
+!!!!!!!!!!  Mesh 4  
 APLOT   
 FLST,5,2,4,ORDE,2   
 FITEM,5,4   
@@ -290,7 +303,14 @@ CMSEL,,_Y
 !*  
 LESIZE,_Y1, , ,20, , , , ,1 
 !*  
-MSHKEY,1
+FLST,5,1,4,ORDE,1   
+FITEM,5,5   
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 CM,_Y,AREA  
 ASEL, , , ,       4 
@@ -305,7 +325,7 @@ CMDELE,_Y1
 CMDELE,_Y2  
 !*  
 /UI,MESH,OFF
-NUMMRG,NODE
+!NUMMRG,ELEM
 
 
 !*  
@@ -336,24 +356,25 @@ ESYS,       0
 SECNUM, 
 TSHAP,LINE  
 !* 
-E,   804  
-EPLOT
-FLST,5,11,1,ORDE,3  
-FITEM,5,584 
-FITEM,5,604 
-FITEM,5,-613
+E,     539 
+EPLOT 
+FLST,5,8,1,ORDE,4   
+FITEM,5,379 
+FITEM,5,399 
+FITEM,5,419 
+FITEM,5,-424
 CM,_NODECM,NODE 
-*SET,_z1,     804   
+*SET,_z1,     539   
 NSEL,S, , ,P51X 
 NSEL,A, , ,_Z1  
 CM,_CERGCM,NODE 
 CMSEL,S,_NODECM 
 !*  
 CMSEL,S,_CERGCM 
-CERIG,804,ALL,ALL, , , ,
+CERIG,539,ALL,ALL, , , ,
 CMSEL,S,_NODECM 
+!* 
 !*  
-
 FINISH
 
 
@@ -364,7 +385,7 @@ NSUBST,500,1000000,500
 OUTRES,ERASE
 OUTRES,ALL,ALL
 OUTRES,SVAR,ALL,,NSVAR 
-!EQSLV,PCG,1E-8   
+EQSLV,PCG,1E-8   
 NLGEOM,0
 LNSRCH,1
 PRED,ON,,ON 
@@ -385,12 +406,12 @@ FITEM,2,2
 /GO 
 DL,P51X, ,UX,   
 FLST,2,1,1,ORDE,1   
-FITEM,2,804 
+FITEM,2,539 
 !*  
 /GO 
 D,P51X, , , , , ,UY, , , , ,
 FLST,2,1,1,ORDE,1   
-FITEM,2,804 
+FITEM,2,539 
 !*  
 /GO 
 D,P51X, ,0.001, , , ,UX, , , , ,

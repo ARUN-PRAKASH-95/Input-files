@@ -60,10 +60,10 @@ TB,STATE,1,,5
 /ANG,1,-30,ZS,1 
 /REP,FAST  
 
-K,1,0.0005,,,   
-K,2,0.0005,0.0175,, 
-K,3,0.0005,0.0225,, 
-K,4,,0.0240,,
+K,1,0.001,,,   
+K,2,0.001,0.0175,, 
+K,3,0.001,0.0225,, 
+K,4,,0.0225,,
 K,5,,0.0625,,   
 K,6,0.0075,0.0625,, 
 K,7,0.03,0.0625,,   
@@ -93,90 +93,8 @@ A,P51X
 CYL4,0.01625,0.0125,0.0065  
 ASBA,       2,       3  
 
-NUMSTR,NODE,50, 
-NUMSTR,ELEM,1,  
-NUMSTR,KP,1,
-NUMSTR,LINE,1,  
-NUMSTR,AREA,1,  
-NUMSTR,VOLU,1,  
 
-FLST,5,1,4,ORDE,1   
-FITEM,5,2   
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,20, , , , ,1 
-!*  
-FLST,5,2,4,ORDE,2   
-FITEM,5,1   
-FITEM,5,3   
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,5, , , , ,1 
-!*  
-FLST,5,1,4,ORDE,1   
-FITEM,5,4   
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,15, , , , ,1 
-!*  
-MSHAPE,0,2D 
-MSHKEY,0
-!*  
-CM,_Y,AREA  
-ASEL, , , ,       1 
-CM,_Y1,AREA 
-CHKMSH,'AREA'   
-CMSEL,S,_Y  
-!*  
-AMESH,_Y1   
-!*  
-CMDELE,_Y   
-CMDELE,_Y1  
-CMDELE,_Y2  
-!*  
 
-APLOT   
-FLST,5,1,4,ORDE,1   
-FITEM,5,9   
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,10, , , , ,1 
-!*  
-FLST,5,2,4,ORDE,2   
-FITEM,5,8   
-FITEM,5,10  
-CM,_Y,LINE  
-LSEL, , , ,P51X 
-CM,_Y1,LINE 
-CMSEL,,_Y   
-!*  
-LESIZE,_Y1, , ,5, , , , ,1 
-!*  
-CM,_Y,AREA  
-ASEL, , , ,       4 
-CM,_Y1,AREA 
-CHKMSH,'AREA'   
-CMSEL,S,_Y  
-!*  
-AMESH,_Y1   
-!*  
-CMDELE,_Y   
-CMDELE,_Y1  
-CMDELE,_Y2  
-!*  
-/UI,MESH,OFF  
 NUMMRG,ALL
 
 !*  
@@ -188,21 +106,9 @@ ESYS,       0
 SECNUM, 
 TSHAP,LINE  
 !*  
-E,       1  
+E,       
 EPLOT   
-FLST,5,4,4,ORDE,2   
-FITEM,5,11  
-FITEM,5,-14 
-LSEL,S, , ,P51X 
-NSLL,S,1
-CM,n,NODE   
-CMSEL,A,n   
-/MREP,EPLOT 
-rbe3,1,all,n
-ALLSEL,ALL  
-esel,all,ELEM
-*get,elemCount,ELEM,,COUNT
-*vget,elemList,ELEM,,ELIST
+
 
 
 *do,iterator,1,elemCount,1
@@ -225,25 +131,8 @@ OUTRES,SVAR,ALL,,NSVAR
 TIME,1
 ALLSEL,ALL 
 
-FLST,2,1,4,ORDE,1   
-FITEM,2,4   
-!*  
-/GO 
-DL,P51X, ,UX,   
-FLST,2,1,1,ORDE,1   
-FITEM,2,101 
-!*  
-/GO 
-D,P51X, , , , , ,UX,UY, , , ,   
-FLST,2,1,1,ORDE,1   
-FITEM,2,1   
-!*  
-/GO 
-D,P51X, , , , , ,UY, , , , ,
-FLST,2,1,1,ORDE,1   
-FITEM,2,1   
-!*  
-/GO 
-D,P51X, ,0.02, , , ,UX, , , , ,  
-/STATUS,SOLU
-SOLVE 
+
+
+ 
+!/STATUS,SOLU
+!SOLVE 
