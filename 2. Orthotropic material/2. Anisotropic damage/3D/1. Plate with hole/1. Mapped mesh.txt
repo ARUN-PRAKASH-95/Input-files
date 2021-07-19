@@ -203,7 +203,7 @@ FLST,2,1,1,ORDE,1
 FITEM,2,1737
 !*  
 /GO 
-D,P51X, ,0.001, , , ,UX, , , , , 
+D,P51X, ,0.002, , , ,UX, , , , , 
 
 
 /STATUS,SOLU
