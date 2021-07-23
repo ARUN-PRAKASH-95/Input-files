@@ -32,7 +32,7 @@ KEYOPT,1,6,0
 
 !*  
 !*  
-R,1,0.003, 
+R,1,0.0038, 
 !*  
 !* 
 ET,2,MASS21 
@@ -41,15 +41,12 @@ R,2,0.001,0.001,0.001, , , ,
 !*  
 !*  
 !* 
-!MPTEMP,,,,,,,,  
-!MPTEMP,1,0  
-!MPDATA,EX,1,,100e9  
-!MPDATA,PRXY,1,,0.33  
+ 
 
 T1 = 1
 TB,USER,1,1,7
 TBTEMP,T1
-TBDATA,1,55000e6,9500e6,0.33,5500e6,2500e6,-2000e6
+TBDATA,1,55800e6,54900e6,0.043,4200e6,910.1e6,-710.2e6
 TB,STATE,1,,6
 
 
@@ -73,8 +70,8 @@ K,7,0.02,,,
 K,8,0.008,,,
 K,9,0.001,,,
 K,10,0.001,0.013,,
-K,11,0.0015,,,
-K,12,0.0015,0.013,,
+K,11,0.002,,,
+K,12,0.002,0.013,,
 !*  
 
 
@@ -96,8 +93,8 @@ LSTR,       9,      10
 
 
 !!!!!!!!!!  Keypoints   
-KL,       1,  0.3333644244142673
-KL,       1,  0.2161404537529210
+KL,       1,  0.4644052918291808
+KL,       1,  0.2159501454883092
 
 
 !!!!!!!!! Delete lines  
@@ -162,7 +159,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,20, , , , ,1 
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 FLST,5,2,4,ORDE,2   
 FITEM,5,1   
@@ -172,7 +169,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,2, , , , ,1  
+LESIZE,_Y1, , ,1, , , , ,1  
 !*  
 MSHAPE,0,2D 
 MSHKEY,1
@@ -200,7 +197,7 @@ LSEL, , , ,P51X
 CM,_Y1,LINE 
 CMSEL,,_Y   
 !*  
-LESIZE,_Y1, , ,20, , , , ,1 
+LESIZE,_Y1, , ,10, , , , ,1 
 !*  
 FLST,5,1,4,ORDE,1   
 FITEM,5,12  
@@ -254,6 +251,8 @@ CMDELE,_Y
 CMDELE,_Y1  
 CMDELE,_Y2  
 !*  
+
+
 
 
 !!!!!!!!!!  Mesh 3  
@@ -356,29 +355,29 @@ ESYS,       0
 SECNUM, 
 TSHAP,LINE  
 !* 
-E,     909
+E,  618
 EPLOT 
 FLST,5,16,1,ORDE,4  
-FITEM,5,589 
-FITEM,5,609 
-FITEM,5,629 
-FITEM,5,-642
+FITEM,5,298 
+FITEM,5,318 
+FITEM,5,338 
+FITEM,5,-351
 CM,_NODECM,NODE 
-*SET,_z1,     909   
+*SET,_z1,     618   
 NSEL,S, , ,P51X 
 NSEL,A, , ,_Z1  
 CM,_CERGCM,NODE 
 CMSEL,S,_NODECM 
 !*  
 CMSEL,S,_CERGCM 
-CERIG,909,ALL,ALL, , , ,
+CERIG,618,ALL,ALL, , , ,
 CMSEL,S,_NODECM 
-!*  
+!*   
 
-!*  
+ 
 FINISH
 
-
+!!!!!!!!  No eq solv but other extras
 /SOL
 !*  
 ANTYPE,0
@@ -386,12 +385,12 @@ NSUBST,500,1000000,500
 OUTRES,ERASE
 OUTRES,ALL,ALL
 OUTRES,SVAR,ALL,,NSVAR 
-!EQSLV,PCG,1E-8  
+EQSLV,PCG,1E-8   
 NLGEOM,0
 LNSRCH,1
-PRED,ON,,ON 
-STAOPT,VT   
-RATE,1  
+!PRED,ON,,ON 
+!STAOPT,VT   
+!RATE,1  
 !STABILIZE,REDUCE,DAMPING,1e-4,NO 
 TIME,1
 ALLSEL,ALL  
@@ -402,15 +401,16 @@ FITEM,2,6
 FITEM,2,-9  
 DL,P51X, ,SYMM  
 FLST,2,1,1,ORDE,1   
-FITEM,2,909 
+FITEM,2,618 
 !*  
 /GO 
-D,P51X, , , , , ,UY,UZ,ROTX,ROTY,ROTZ,  
+D,P51X, , , , , ,,,ROTX,ROTY,ROTZ,  
 FLST,2,1,1,ORDE,1   
-FITEM,2,909 
+FITEM,2,618 
 !*  
 /GO 
-D,P51X, ,0.001, , , ,UX, , , , ,
+D,P51X, ,0.0005, , , ,UX, , , , ,
+
 
 /STATUS,SOLU
 SOLVE

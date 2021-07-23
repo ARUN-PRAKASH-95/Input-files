@@ -1,0 +1,657 @@
+/CLEAR,START
+ 
+ 
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+
+ERESX,NO
+!*  
+/PREP7  
+!*  
+ET,1,SOLID185   
+!*  
+KEYOPT,1,2,0
+KEYOPT,1,3,0
+KEYOPT,1,6,0
+KEYOPT,1,8,0
+!*  
+
+ET,2,MASS21 
+!*
+R,2,0.001,0.001,0.001, , , ,
+!*  
+!*  
+!* 
+
+!* 
+!MPTEMP,,,,,,,,  
+!MPTEMP,1,0  
+!MPDATA,EX,1,,100e9  
+!MPDATA,PRXY,1,,0.33  
+
+
+T1 = 1
+TB,USER,1,1,9,9  
+TBTEMP,T1
+TBDATA,,55000e6,9500e6,9500e6,0.33,0.27,0.33,5500e6,3000e6,5500e6
+TB,STATE,1,,7
+
+
+!!!!!!!!!  Keypoints
+
+K, ,,,, 
+K, ,0.001,,,
+K, ,0.003,,,
+K, ,0.008,,,
+K, ,0.027,,, 
+K, ,0.027,0.023,,   
+K, ,0.008,0.023,,   
+K, ,0.001,0.023,,   
+K, ,,0.023,,
+K, ,,0.003,,
+
+
+!!!!!!!  Arc
+!*  
+LARC,10,3,1,0.003,  
+
+!!!!!!!  Lines  
+LSTR,       3,       4  
+LSTR,       4,       5  
+LSTR,       5,       6  
+LSTR,       6,       7  
+LSTR,       7,       8  
+LSTR,       8,       9  
+LSTR,       9,      10  
+LSTR,       8,       2  
+LSTR,       7,       4  
+
+
+!!!  New KP 
+KL,       9,  0.8770328919151431
+
+!! Delete lines and arcs
+ALLSEL,ALL  
+FLST,2,2,4,ORDE,2   
+FITEM,2,1   
+FITEM,2,9   
+LDELE,P51X  
+
+
+!!! 2 arcs
+LARC,10,11,1,0.003, 
+LARC,11,3,1,0.003, 
+
+!!!! New line
+LSTR,       8,      11  
+
+
+!!! New KPs
+K, ,0.001,0.008,,   
+K, ,0.008,0.008,, 
+K, ,,0.008,, 
+
+LSTR,      12,      13  
+LSTR,      12,      14  
+
+
+!!!!!!!! Areas  
+FLST,2,4,3  
+FITEM,2,10  
+FITEM,2,11  
+FITEM,2,12  
+FITEM,2,14  
+A,P51X  
+FLST,2,4,3  
+FITEM,2,14  
+FITEM,2,12  
+FITEM,2,8   
+FITEM,2,9   
+A,P51X  
+FLST,2,5,3  
+FITEM,2,11  
+FITEM,2,3   
+FITEM,2,4   
+FITEM,2,13  
+FITEM,2,12  
+A,P51X  
+FLST,2,4,3  
+FITEM,2,12  
+FITEM,2,8   
+FITEM,2,7   
+FITEM,2,13  
+A,P51X  
+
+K, ,0.027,0.008,, 
+FLST,2,4,3  
+FITEM,2,4   
+FITEM,2,5   
+FITEM,2,15  
+FITEM,2,13  
+A,P51X  
+FLST,2,4,3  
+FITEM,2,13  
+FITEM,2,7   
+FITEM,2,6   
+FITEM,2,15  
+A,P51X
+
+
+APLOT   
+!!!!!!  Extrude 1   
+FLST,2,1,5,ORDE,1   
+FITEM,2,1   
+VEXT,P51X, , ,0,0,0.001,,,, 
+
+LPLOT   
+!!!!!!!!!!   Mesh 1 
+VPLOT   
+FLST,5,4,4,ORDE,4   
+FITEM,5,14  
+FITEM,5,-15 
+FITEM,5,24  
+FITEM,5,26  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!!!!Length 
+LESIZE,_Y1, , ,5, , , , ,1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,1   
+FITEM,5,13  
+FITEM,5,23  
+FITEM,5,25  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*
+
+!!!! Breadth  
+LESIZE,_Y1, , ,1, , , , ,1  
+!*  
+FLST,5,4,4,ORDE,2   
+FITEM,5,27  
+FITEM,5,-30 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+!! Thickness
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+MSHAPE,0,3D 
+MSHKEY,1
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+
+
+
+APLOT   
+!!!!!!  Extrude 2   
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+VEXT,P51X, , ,0,0,0.001,,,, 
+
+
+!!!!!!!!  Mesh 2
+LPLOT   
+FLST,5,4,4,ORDE,4   
+FITEM,5,2   
+FITEM,5,14  
+FITEM,5,24  
+FITEM,5,32  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+!!!Close to arc
+LESIZE,_Y1, , ,5, , , , ,1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,12  
+FITEM,5,18  
+FITEM,5,33  
+FITEM,5,-34 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!!Opp to arc
+LESIZE,_Y1, , ,8, , , , ,1  
+!*  
+FLST,5,2,4,ORDE,2   
+FITEM,5,9   
+FITEM,5,31  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!!! Arc
+LESIZE,_Y1, , ,16, , , , ,1 
+!*  
+FLST,5,5,4,ORDE,4   
+FITEM,5,28  
+FITEM,5,-29 
+FITEM,5,37  
+FITEM,5,-39 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!* 
+
+!!!Thickness 
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+FLST,2,2,5,ORDE,2   
+FITEM,2,15  
+FITEM,2,-16 
+ACCAT,P51X  
+CM,_Y,VOLU  
+VSEL, , , ,       2 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+
+
+
+
+
+!!!!!  Extrude 3
+FLST,2,1,5,ORDE,1   
+FITEM,2,2   
+VEXT,P51X, , ,0,0,0.001,,,, 
+
+ 
+VPLOT   
+!!!!!!  Mesh 3  
+FLST,5,4,4,ORDE,4   
+FITEM,5,16  
+FITEM,5,-17 
+FITEM,5,44  
+FITEM,5,46  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!* 
+
+!!!!! Length 
+LESIZE,_Y1, , ,15, , , , ,1 
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,7   
+FITEM,5,13  
+FITEM,5,25  
+FITEM,5,45  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!!!! Breadth
+LESIZE,_Y1, , ,1, , , , ,1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,29  
+FITEM,5,-30 
+FITEM,5,49  
+FITEM,5,-50 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!Thcikness
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       3 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!**  
+
+
+!!!!!!!  Extrude 4  
+APLOT   
+FLST,2,1,5,ORDE,1   
+FITEM,2,4   
+VEXT,P51X, , ,0,0,0.001,,,,  
+
+
+!!!!!!!!!  Mesh 4   
+LPLOT   
+FLST,5,4,4,ORDE,4   
+FITEM,5,16  
+FITEM,5,19  
+FITEM,5,44  
+FITEM,5,53  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+!!!! Length
+LESIZE,_Y1, , ,15, , , , ,1 
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,6   
+FITEM,5,12  
+FITEM,5,34  
+FITEM,5,52  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*
+!!!! Breadth  
+LESIZE,_Y1, , ,8, , , , ,1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,29  
+FITEM,5,39  
+FITEM,5,49  
+FITEM,5,57  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+!!!!Thickness
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       4 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+
+
+
+!!!!!!!  Extrude 5  
+APLOT   
+FLST,2,1,5,ORDE,1   
+FITEM,2,5   
+VEXT,P51X, , ,0,0,0.001,,,, 
+
+
+!!!!!! Mesh 5
+LPLOT   
+FLST,5,4,4,ORDE,4   
+FITEM,5,18  
+FITEM,5,20  
+FITEM,5,33  
+FITEM,5,60  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!!!!Arc side
+LESIZE,_Y1, , ,8, , , , ,1  
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,3   
+FITEM,5,21  
+FITEM,5,59  
+FITEM,5,61  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!* 
+
+!!!! Long edge 
+LESIZE,_Y1, , ,10, , , , ,1 
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,38  
+FITEM,5,-39 
+FITEM,5,64  
+FITEM,5,-65 
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+
+!!!!Thickness
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       5 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+
+
+!!!!!!!  Extrude 6 
+APLOT   
+FLST,2,1,5,ORDE,1   
+FITEM,2,6   
+VEXT,P51X, , ,0,0,0.001,,,, 
+
+
+!!!!!!!!!  Mesh 6
+LPLOT   
+FLST,5,4,4,ORDE,4   
+FITEM,5,19  
+FITEM,5,22  
+FITEM,5,53  
+FITEM,5,69  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,15, , , , ,1 
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,5   
+FITEM,5,21  
+FITEM,5,61  
+FITEM,5,68  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,10, , , , ,1 
+!*  
+FLST,5,4,4,ORDE,4   
+FITEM,5,39  
+FITEM,5,57  
+FITEM,5,65  
+FITEM,5,73  
+CM,_Y,LINE  
+LSEL, , , ,P51X 
+CM,_Y1,LINE 
+CMSEL,,_Y   
+!*  
+LESIZE,_Y1, , ,3, , , , ,1  
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       6 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+/UI,MESH,OFF
+NUMMRG,ALL
+
+
+
+
+
+
+
+
+
+esel,all,ELEM
+*get,elemCount,ELEM,,COUNT
+*vget,elemList,ELEM,,ELIST
+
+
+*do,iterator,1,elemCount,1
+	esel,none
+	esel,ALL,ELEM,,elemList(%iterator%)
+	*get,elemvol,ELEM,elemList(%iterator%),VOLU	
+	inistate,set,dtype,svar
+	inistate,defi,elemList(%iterator%),ALL,,,%elemvol/8%
+*enddo 
+
+
+
+!*  
+!*  
+N, ,0.035,0.0112,0.0005,,,,
+TYPE,   2   
+MAT,       1
+REAL,       2   
+ESYS,       0   
+SECNUM, 
+TSHAP,LINE  
+!* 
+!* 
+E, 2194
+EPLOT
+
+FLST,5,96,1,ORDE,20 
+FITEM,5,1129
+FITEM,5,1139
+FITEM,5,-1146   
+FITEM,5,1220
+FITEM,5,1230
+FITEM,5,-1237   
+FITEM,5,1318
+FITEM,5,-1319   
+FITEM,5,1340
+FITEM,5,-1355   
+FITEM,5,1516
+FITEM,5,1526
+FITEM,5,-1539   
+FITEM,5,1682
+FITEM,5,1693
+FITEM,5,-1706   
+FITEM,5,1874
+FITEM,5,-1875   
+FITEM,5,1896
+FITEM,5,-1923   
+CM,_NODECM,NODE 
+*SET,_z1,    2194   
+NSEL,S, , ,P51X 
+NSEL,A, , ,_Z1  
+CM,_CERGCM,NODE 
+CMSEL,S,_NODECM 
+!*  
+CMSEL,S,_CERGCM 
+CERIG,2194,ALL,ALL, , , ,   
+CMSEL,S,_NODECM 
+!*  
+
+
+FINISH 
+ 
+/SOL
+!*  
+ANTYPE,0
+NSUBST,100,1000000,100
+OUTRES,ERASE
+OUTRES,ALL,ALL
+OUTRES,SVAR,ALL,,NSVAR 
+EQSLV,PCG,1E-8  
+NLGEOM,0
+LNSRCH,1
+PRED,ON,,ON 
+STAOPT,VT   
+RATE,1  
+!STABILIZE,REDUCE,DAMPING,1e-4,NO 
+TIME,1
+ALLSEL,ALL   
+
+!!!!!!!!!! BCs
+FLST,2,4,5,ORDE,4    
+FITEM,2,11  
+FITEM,2,14  
+FITEM,2,23  
+FITEM,2,30  
+DA,P51X,SYMM
+
+FLST,2,1,1,ORDE,1   
+FITEM,2,2194
+!*  
+/GO 
+D,P51X, , , , , ,UY,UZ,ROTX,ROTY,ROTZ,  
+FLST,2,1,1,ORDE,1   
+FITEM,2,2194
+!*  
+/GO 
+D,P51X, ,0.002, , , ,UX, , , , ,
+
+
+/STATUS,SOLU
+SOLVE   
+
+
+
